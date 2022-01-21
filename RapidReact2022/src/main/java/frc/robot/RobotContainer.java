@@ -11,6 +11,8 @@ public class RobotContainer {
     public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
 
     RobotContainer() {
+        System.out.println("RobotContainer c'tor");
+        SmartDashboard.putString("Hello World", "I am Robot");
         new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
         .whileHeld(new XButtonTest());  
     }
