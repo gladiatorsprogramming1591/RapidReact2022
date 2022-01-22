@@ -15,6 +15,7 @@ public class XButtonTest extends CommandBase {
     public void initialize() {
         System.out.println("XButtonTest init");
         SmartDashboard.putBoolean("X Pressed", false);
+        SmartDashboard.putData(this);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class XButtonTest extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         System.out.println("XButtonTest end");
-        SmartDashboard.putBoolean("X Pressed", false);       
+        // SmartDashboard.putBoolean("X Pressed", false);       
     }
 
     @Override

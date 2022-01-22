@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private RobotContainer m_robotContainer;
+  private int loopcount = 0;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -52,6 +53,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    // if ((++loopcount % 50) == 0) {
+    //   System.out.println("robotPeriodic loopcount=" + loopcount);
+    // }
   }
 
   /**
