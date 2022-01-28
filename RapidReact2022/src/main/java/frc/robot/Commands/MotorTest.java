@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class MotorTest extends CommandBase {
@@ -21,6 +22,7 @@ public class MotorTest extends CommandBase {
     public void initialize() {
         System.out.println("MotorTest init");
         motor = new WPI_TalonSRX(Constants.kMotorChannel);
+        // motor.configOpenloopRamp(1.0);
         SmartDashboard.putData(this);
     }
 
