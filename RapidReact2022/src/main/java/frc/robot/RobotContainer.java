@@ -5,17 +5,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.Commands.*;
+import frc.robot.commands.*;
+import frc.robot.commands.ShooterCommands.ShooterOff;
+import frc.robot.commands.ShooterCommands.ShooterOn;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class RobotContainer {
+    private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
     public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
 
-    RobotContainer() {
+    RobotContainer() { 
             System.out.println("RobotContainer c'tor");
         SmartDashboard.putString("Hello World", "I am Robot");
         new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
         .whileHeld(new XButtonTest()); 
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
-        .whenPressed(new MotorTest(m_driverStick)); 
+        // new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+        // .whenPressed(new MotorTest(m_driverStick)); 
+
+        //Shooter
+
+        new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
+      .whenPressed(new ShooterOn(m_shooterSubsystem));
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
+      .whenPressed(new ShooterOff(m_shooterSubsystem));
     }
 }

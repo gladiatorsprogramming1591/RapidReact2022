@@ -7,4 +7,10 @@ public final class Constants {
 
     // CAN channels
     public final static int kMotorChannel = 0;    
+    public static final int kShooterMotorPort = 6;
+
+    public final static double kShooterMotorSpeed = -0.3;
+    public final static double kShooterGearRatio = 7/6;
+    public final static double kNeoMaxSpeed = 5676;
+    public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
 }
