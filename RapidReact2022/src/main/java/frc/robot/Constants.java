@@ -13,5 +13,4 @@ public final class Constants {
     public final static double kShooterGearRatio = 7/6;
     public final static double kNeoMaxSpeed = 5676;
     public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
-    public static final double kCbotFrontLeftMotorCANID = 0;
 }
