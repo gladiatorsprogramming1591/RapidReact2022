@@ -37,15 +37,16 @@ public class FastDrive extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putBoolean("Slow Drive", false);
+    m_driveTrain.setFastDrive();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_AxisForward = m_driveTrain.getAxisForward();
     m_AxisTurning = m_driveTrain.getAxisTurning();
     m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kFastSquaredInputs);
   }
+
 
   // Called once the command ends or is interrupted.
   @Override

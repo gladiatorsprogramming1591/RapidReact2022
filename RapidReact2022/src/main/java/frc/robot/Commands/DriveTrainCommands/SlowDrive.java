@@ -18,8 +18,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class SlowDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
-  private double m_AxisForward;
-  private double m_AxisTurning;
 
 
   /**
@@ -37,14 +35,7 @@ public class SlowDrive extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putBoolean("Slow Drive", true);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    m_AxisForward = m_driveTrain.getAxisForward() * Constants.kSlowDriveScalar;
-    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowDriveScalar;
-    m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
+    m_driveTrain.setSlowDrive();
   }
 
   // Called once the command ends or is interrupted.
@@ -55,6 +46,6 @@ public class SlowDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

@@ -7,7 +7,8 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.commands.DriveTrainCommands.SlowDrive;
+import frc.robot.Constants;
+import frc.robot.commands.DriveTrainCommands.FastDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,10 +21,13 @@ public abstract class DriveTrain extends SubsystemBase {
 
   private final Joystick m_driverJoystick;
 
+  private double m_AxisForward = 0;
+  private double m_AxisTurning = 0;
+
   public DriveTrain(DifferentialDrive differentialDrive, Joystick driverJoystick) {
     m_differentialDrive = differentialDrive;
     m_driverJoystick = driverJoystick;
-    setDefaultCommand(new SlowDrive(this));
+    setDefaultCommand(new FastDrive(this));
   }
 
   public void drive(double xSpeed, double zRotation, boolean squareInputs) {
@@ -41,4 +45,21 @@ public abstract class DriveTrain extends SubsystemBase {
   public abstract void setBrakeMode();
 
   public abstract void setCoastMode();
+
+
+ @Override
+ public void periodic() {
+  //  drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
+ }
+
+   // Called every time the scheduler runs while the command is scheduled.
+ public void setSlowDrive() {
+   m_AxisForward = getAxisForward() * Constants.kSlowDriveScalar;
+   m_AxisTurning = getAxisTurning() * Constants.kSlowDriveScalar;
+ }
+ 
+ public void setFastDrive() {
+   m_AxisForward = getAxisForward() * Constants.kFastDriveScalar;
+   m_AxisTurning = getAxisTurning() * Constants.kFastDriveScalar;
+ }
 }

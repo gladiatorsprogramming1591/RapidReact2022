@@ -63,7 +63,7 @@ public class DriveTrainC extends DriveTrain {
     m_NavX = new AHRS(SPI.Port.kMXP);
 
   }
-
+  
   @Override
   public void setBrakeMode() {
     m_frontLeftMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
