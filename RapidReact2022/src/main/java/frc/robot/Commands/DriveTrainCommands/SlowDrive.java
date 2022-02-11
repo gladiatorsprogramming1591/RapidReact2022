@@ -18,7 +18,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class SlowDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
-
+  private double m_AxisForward;
+  private double m_AxisTurning;
 
   /**
    * Creates a new ExampleCommand.
@@ -38,6 +39,13 @@ public class SlowDrive extends CommandBase {
     m_driveTrain.setSlowDrive();
   }
 
+  @Override
+  public void execute() {
+    m_AxisForward = m_driveTrain.getAxisForward();
+    m_AxisTurning = m_driveTrain.getAxisTurning();
+    m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
+  }
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
@@ -46,6 +54,6 @@ public class SlowDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

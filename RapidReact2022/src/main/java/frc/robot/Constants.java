@@ -9,8 +9,8 @@ public final class Constants {
     public final static int kMotorChannel = 0; 
     public final static int kCbotFrontLeftMotorCANID = 1;
     public final static int kCbotRearLeftMotorCANID = 2;
-    public final static int kCbotRearRightMotorCANID = 3;
-    public final static int kCbotFrontRightMotorCANID = 4;
+    public final static int kCbotFrontRightMotorCANID = 3;
+    public final static int kCbotRearRightMotorCANID = 4;
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.015;
@@ -34,8 +34,8 @@ public final class Constants {
          //Drive train constants
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.6;  // with squared inputs, sets max speed to 36%
-    public final static double kFastDriveScalar = 1.0;  // with squared inputs, sets max speed to 100%
+    public final static double kSlowDriveScalar = 0.8;  // with squared inputs, sets max speed to 64%
+    public final static double kFastDriveScalar = .5;  // with squared inputs, sets max speed to 25%
     public final static double kDriveRampRate = 0.1;
     
     //Encoder 

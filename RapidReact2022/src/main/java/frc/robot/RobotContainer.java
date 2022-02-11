@@ -23,9 +23,9 @@ public class RobotContainer {
         .whenPressed(new MotorTest(m_driverStick)); 
 
             // ---DRIVE TRAIN--- 
-    // new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
-    //   .whenPressed(new SlowDrive(m_driveTrain));
-    // new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
-    //   .whenPressed(new FastDrive(m_driveTrain));
+     new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
+       .whenPressed(new SlowDrive(m_driveTrain));
+     new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
+       .whenPressed(new FastDrive(m_driveTrain));
     }
 }
