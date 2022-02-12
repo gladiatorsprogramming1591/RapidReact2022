@@ -42,6 +42,7 @@ public final class Constants {
     public final static double kSlowTurnScalar = 0.5;
     public final static double kFastTurnScalar = 0.8;
     public final static double kDriveRampRate = 0.1;
+    public final static double kTargetVerticalVelocity = 0.5;
     
     //Encoder 
     public final static int kEncoderResolution = 42;
@@ -57,4 +58,6 @@ public final class Constants {
     public static final double kIntakeReverseSpeed = -.5;
     public static final double kIntakeRampRate = 0.1;
     public static final int kIntakeChannel = 5; //tbd
+
+
 }
