@@ -42,8 +42,8 @@ public class FastDrive extends CommandBase {
 
   @Override
   public void execute() {
-    m_AxisForward = m_driveTrain.getAxisForward();
-    m_AxisTurning = m_driveTrain.getAxisTurning();
+    m_AxisForward = m_driveTrain.getAxisForward() * Constants.kFastDriveScalar;
+    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kFastTurnScalar;
     m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kFastSquaredInputs);
   }
 

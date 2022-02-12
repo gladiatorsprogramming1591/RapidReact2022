@@ -34,8 +34,10 @@ public final class Constants {
          //Drive train constants
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.8;  // with squared inputs, sets max speed to 64%
-    public final static double kFastDriveScalar = .5;  // with squared inputs, sets max speed to 25%
+    public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 64%
+    public final static double kFastDriveScalar = 0.8;  // with squared inputs, sets max speed to 25%
+    public final static double kSlowTurnScalar = 0.5;
+    public final static double kFastTurnScalar = 0.8;
     public final static double kDriveRampRate = 0.1;
     
     //Encoder 
