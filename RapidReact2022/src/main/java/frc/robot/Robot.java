@@ -91,7 +91,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    // m_robotContainer.m_driveTrain.setFastDrive();
+    // SmartDashboard.putBoolean("Slow Drive", false);
+  }
 
   /** This function is called periodically during operator control. */
   @Override
