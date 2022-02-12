@@ -36,9 +36,10 @@ public class ShooterSubsystem extends SubsystemBase{
         } else {
           // m_shooterMotor.getPIDController().setFF(speed * 1 + 0);
           m_targetVelocity = speed;
-          System.out.println("Setting shooter speed to " + speed);
-          m_shooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);
-          // m_shooterMotor.set(speed);
+          System.out.println("Setting shooter speed to " + Constants.kShooterMotorSpeed);
+          // System.out.println("Setting shooter speed to " + speed);
+          // m_shooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);
+          m_shooterMotor.set(Constants.kShooterMotorSpeed);
         }
       }
     
