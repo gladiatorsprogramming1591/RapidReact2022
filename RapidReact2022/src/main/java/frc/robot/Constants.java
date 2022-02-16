@@ -57,4 +57,9 @@ public final class Constants {
     public static final double kIntakeReverseSpeed = -.5;
     public static final double kIntakeRampRate = 0.1;
     public static final int kIntakeChannel = 5; //tbd
+    public static final double kStopDistance = 0.25;
+    public static final double kAutoDriveSpeed = 0.4;
+    public static final double kP_DriveStraight = 0.01;
+    public static final double kI_DriveStraight = 0;
+    public static final double kD_DriveStraight = 0;
 }
