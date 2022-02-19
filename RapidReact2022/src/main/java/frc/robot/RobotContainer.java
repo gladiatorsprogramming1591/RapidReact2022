@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
+import frc.robot.commands.DriveTrainCommands.PIDDriveToTarget;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.commands.IntakeCommands.IntakeOn;
@@ -34,6 +35,9 @@ public class RobotContainer {
        .whenPressed(new FastDrive(m_driveTrain));
         new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
         .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
+
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
+      .whenPressed(new PIDDriveToTarget(m_driveTrain)); 
 
         //Shooter
         new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
