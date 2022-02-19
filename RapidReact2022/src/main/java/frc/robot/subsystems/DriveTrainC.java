@@ -116,5 +116,7 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
     SmartDashboard.putNumber("Heading", getHeading());
     SmartDashboard.putBoolean("Is NavX Calibrating?", m_NavX.isCalibrating());
+
+    super.periodic();
   }
 }

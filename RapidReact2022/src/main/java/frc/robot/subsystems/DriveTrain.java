@@ -87,12 +87,12 @@ public abstract class DriveTrain extends SubsystemBase {
   double x = tx.getDouble(0.0);
   double y = ty.getDouble(0.0);
   double area = ta.getDouble(0.0);
-  int v = (int) tv.getNumber(0.0);
+  // int v = (int) tv.getNumber(0.0);
 
   SmartDashboard.putNumber("LimelightX", x);
   SmartDashboard.putNumber("LimelightY", y);
   SmartDashboard.putNumber("LimelightArea", area);
-  SmartDashboard.putNumber("LimelightV", v);
+  // SmartDashboard.putNumber("LimelightV", v);
  }
 
 
