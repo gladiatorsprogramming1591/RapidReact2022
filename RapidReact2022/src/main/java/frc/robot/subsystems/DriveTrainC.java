@@ -74,7 +74,7 @@ public class DriveTrainC extends DriveTrain {
 
   @Override
   public void setCoastMode() {
-    System.out.println("Calling DriveTrainP.setCoastMode");
+    System.out.println("Calling DriveTrainC.setCoastMode");
     m_frontLeftMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
     m_frontRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
     m_rearLeftMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);

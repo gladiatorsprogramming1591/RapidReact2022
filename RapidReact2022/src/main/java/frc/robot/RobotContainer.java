@@ -9,6 +9,7 @@ import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTarget;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.subsystems.DriveTrainC;
+import frc.robot.commands.IntakeCommands.IntakeOff;
 import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.ShooterCommands.ShooterOff;
 import frc.robot.commands.ShooterCommands.ShooterOn;
@@ -25,16 +26,19 @@ public class RobotContainer {
     RobotContainer() { 
             System.out.println("RobotContainer c'tor");
         SmartDashboard.putString("Hello World", "I am Robot");
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
-        .whileHeld(new XButtonTest()); 
+        //new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+        //.whileHeld(new XButtonTest()); 
 
             // ---DRIVE TRAIN--- 
      new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
        .whenPressed(new SlowDrive(m_driveTrain));
      new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
        .whenPressed(new FastDrive(m_driveTrain));
+
         new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
         .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
+        new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
+        .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
 
       new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
       .whenPressed(new PIDDriveToTarget(m_driveTrain)); 

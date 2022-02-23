@@ -31,7 +31,12 @@ public abstract class DriveTrain extends SubsystemBase {
       NetworkTableEntry tx;
       NetworkTableEntry ty;
       NetworkTableEntry ta;
-      NetworkTableEntry tv;
+      NetworkTableEntry tv; 
+
+      double x = 0.0;
+      double y = 0.0;
+      double area = 0.0;
+      double v = 0.0;
 
   public DriveTrain(DifferentialDrive differentialDrive, Joystick driverJoystick) {
     m_differentialDrive = differentialDrive;
@@ -84,15 +89,15 @@ public abstract class DriveTrain extends SubsystemBase {
   ta = table.getEntry("ta");
   tv = table.getEntry("tv");
 
-  double x = tx.getDouble(0.0);
-  double y = ty.getDouble(0.0);
-  double area = ta.getDouble(0.0);
-  // int v = (int) tv.getNumber(0.0);
+  x = tx.getDouble(0.0);
+  y = ty.getDouble(0.0);
+  area = ta.getDouble(0.0);
+  v = tv.getDouble(0.0);
 
   SmartDashboard.putNumber("LimelightX", x);
   SmartDashboard.putNumber("LimelightY", y);
   SmartDashboard.putNumber("LimelightArea", area);
-  // SmartDashboard.putNumber("LimelightV", v);
+  SmartDashboard.putNumber("LimelightV", v);
  }
 
 
@@ -104,6 +109,13 @@ public abstract class DriveTrain extends SubsystemBase {
  
  public void setFastDrive() {
    m_AxisForward = getAxisForward() * Constants.kFastDriveScalar;
-   m_AxisTurning = getAxisTurning() * Constants.kFastDriveScalar;
+   m_AxisTurning = getAxisTurning() * Constants.kFastDriveScalar; 
+ } 
+
+ public boolean validTarget(){
+   if (v == 0.0) {
+     return false; 
+   } 
+   return true; 
  }
 }
