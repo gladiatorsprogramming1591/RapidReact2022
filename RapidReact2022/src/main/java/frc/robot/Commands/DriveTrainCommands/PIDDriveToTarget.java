@@ -44,12 +44,23 @@ public class PIDDriveToTarget extends CommandBase{
         } else {
             invalidTargetLoopCount = 0; 
         
-            double rot = anglePID.calculate(m_driveTrainC.calculateHorizontalError(), 0);
+            double rot = anglePID.calculate(-m_driveTrainC.calculateHorizontalError()/10, 0);
             SmartDashboard.putNumber("PIDDriveToTarget Rotations: ", rot);
+            System.out.println("Rot: " + rot + "PosErr: " + m_driveTrainC.calculateHorizontalError()/10);
             double drive = drivePID.calculate(m_driveTrainC.calculateVerticalError(), Constants.kTargetHeight);
             SmartDashboard.putNumber("PIDDriveToTarget Drive: ", drive);
 
-            m_driveTrainC.drive(0, rot, Constants.kFastSquaredInputs); // testing with forward speed of 0 for now  
+            // if (rot < Constants.kMinRotations){
+            //     rot = Constants.kMinRotations; 
+            // }
+            if (rot > 0.5){
+                rot = 0.5; 
+            } else if (rot < -0.5) {
+                rot = -0.5;
+            }
+            
+
+            m_driveTrainC.drive(0, rot, Constants.kSlowSquaredInputs); // testing with forward speed of 0 for now  
         }
     } 
 
@@ -59,7 +70,7 @@ public class PIDDriveToTarget extends CommandBase{
             System.out.println("Target lost! Stopping..."); 
             return(true); 
         }
-        return drivePID.atSetpoint(); // TODO make sure vel tol is set correctly, otherwise use m_driveTrainC.isStopped()
+        return anglePID.atSetpoint(); // TODO make sure vel tol is set correctly, otherwise use m_driveTrainC.isStopped()
     }
 
     @Override
