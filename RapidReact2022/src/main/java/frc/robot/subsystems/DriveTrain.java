@@ -77,7 +77,7 @@ public abstract class DriveTrain extends SubsystemBase {
 
       ty = table.getEntry("ty");
 
-      return -ty.getDouble(0.0); // - Constants.kTargetHeight;
+      return ty.getDouble(0.0); // - Constants.kTargetHeight;
     }
 
  @Override

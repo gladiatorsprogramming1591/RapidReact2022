@@ -14,8 +14,8 @@ public class PIDDriveToTarget extends CommandBase{
     private final DriveTrainC m_driveTrainC;
     private PIDController anglePID = new PIDController(Constants.kPIDDriveRotP, Constants.kPIDDriveRotI, Constants.kPIDDriveRotD);
     private PIDController drivePID = new PIDController(Constants.kPIDDriveP, Constants.kPIDDriveI, Constants.kPIDDriveD);
-    private double m_angleSetpoint;
-    private double m_driveSetpoint;
+    private double m_angleSetpoint = 0;
+    private double m_driveSetpoint = Constants.kTargetHeight;
     private int invalidTargetLoopCount = 0; 
 
     public PIDDriveToTarget(DriveTrainC driveTrainC) {
@@ -28,6 +28,7 @@ public class PIDDriveToTarget extends CommandBase{
 
     @Override
     public void initialize() {
+        m_driveTrainC.setBrakeMode();
         System.out.println("--------------- PIDDriveToTarget ----------------");
         if (m_driveTrainC.validTarget() != true){
             System.out.println("PIDDriveToTarget: no valid target"); 
@@ -44,23 +45,27 @@ public class PIDDriveToTarget extends CommandBase{
         } else {
             invalidTargetLoopCount = 0; 
         
-            double rot = anglePID.calculate(-m_driveTrainC.calculateHorizontalError()/10, 0);
+            double rot = anglePID.calculate(-m_driveTrainC.calculateHorizontalError()/10, m_angleSetpoint);
             SmartDashboard.putNumber("PIDDriveToTarget Rotations: ", rot);
-            System.out.println("Rot: " + rot + "PosErr: " + m_driveTrainC.calculateHorizontalError()/10);
-            double drive = drivePID.calculate(m_driveTrainC.calculateVerticalError(), Constants.kTargetHeight);
+            System.out.println("Rot: " + rot + "  RotPosErr: " + m_driveTrainC.calculateHorizontalError()/10);
+            double drive = drivePID.calculate(m_driveTrainC.calculateVerticalError()/10, m_driveSetpoint/10);
             SmartDashboard.putNumber("PIDDriveToTarget Drive: ", drive);
 
-            // if (rot < Constants.kMinRotations){
-            //     rot = Constants.kMinRotations; 
-            // }
+            System.out.println("Drive: " + drive + "  DrivePosErr: " + (m_driveSetpoint/10.0 - m_driveTrainC.calculateVerticalError()/10));
+
             if (rot > 0.5){
                 rot = 0.5; 
             } else if (rot < -0.5) {
                 rot = -0.5;
+            } 
+
+            if (drive > 0.5){
+                drive = 0.5; 
+            } else if (drive < -0.5) {
+                drive = -0.5;
             }
             
-
-            m_driveTrainC.drive(0, rot, Constants.kSlowSquaredInputs); // testing with forward speed of 0 for now  
+            m_driveTrainC.drive(drive, rot, false);
         }
     } 
 
@@ -70,13 +75,14 @@ public class PIDDriveToTarget extends CommandBase{
             System.out.println("Target lost! Stopping..."); 
             return(true); 
         }
-        return anglePID.atSetpoint(); // TODO make sure vel tol is set correctly, otherwise use m_driveTrainC.isStopped()
+        return anglePID.atSetpoint() && drivePID.atSetpoint();
     }
 
     @Override
     public void end(boolean interrupted) {
         m_driveTrainC.drive(0, 0, Constants.kFastSquaredInputs);
-        m_driveTrainC.setCoastMode();
+        System.out.println("PIDDriveToTarget Ending...");
+        // m_driveTrainC.setCoastMode();
     }
 
     private double customEq(double x) {
