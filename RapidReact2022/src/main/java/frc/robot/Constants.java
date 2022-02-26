@@ -8,13 +8,16 @@ public final class Constants {
     public final static int kManipulatorControllerPort = 1;
 
     // CAN channels
-    public final static int kMotorChannel = 0;    
+    public final static int kMotorChannel = 0;    //Not used, for initial testing
     public final static int kCbotFrontLeftMotorCANID = 1;
     public final static int kCbotRearLeftMotorCANID = 2;
     public final static int kCbotFrontRightMotorCANID = 3;
     public final static int kCbotRearRightMotorCANID = 4;
     public static final int kShooterMotorPort = 6;
     public static final int kIntakeChannel = 7; //works on old robot although labels are swapped
+    public static final int kHopperChannel = 5;
+    public static final int kLeftClimberChannel = 8;
+    public static final int kRightClimberChannel = 9;
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.4;
@@ -61,6 +64,12 @@ public final class Constants {
     public static final double kIntakeReverseSpeed = -.5;
     public static final double kIntakeRampRate = 0.1;
     public static final double kMinRotations = 0.2;
-
-
+    public static final double kHopperRampRate = 0.1;
+    public static final double kHopperForwardSpeed = 0.3;
+    public static final double kHopperReverseSpeed = -0.3;
+    public static final double kHopperReverseDist = -6;
+    public static final double kClimberUpwardDist = 10; 
+    public static final double kClimberDownwardDist = -10; 
+    public static final double kClimberUpwardSpeed = 0.3;
+    public static final double kClimberDownwardSpeed = -0.3;
 }
