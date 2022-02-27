@@ -37,7 +37,7 @@ public class Climb {
         );
       m_stick = stick;
 
-    m_LeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate); //Needs to change
+    m_LeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_RightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
 
     m_RightMotor.setInverted(true);
