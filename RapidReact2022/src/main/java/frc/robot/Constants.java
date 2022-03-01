@@ -13,9 +13,9 @@ public final class Constants {
     public final static int kCbotRearLeftMotorCANID = 2;
     public final static int kCbotFrontRightMotorCANID = 3;
     public final static int kCbotRearRightMotorCANID = 4;
-    public static final int kShooterMotorPort = 6;
+    public static final int kShooterMotorPort = 5; //ID 6 for P-Bot
     public static final int kIntakeChannel = 7; //works on old robot although labels are swapped
-    public static final int kHopperChannel = 5;
+    public static final int kHopperChannel = 6; //ID 5 for P-Bot
     public static final int kLeftClimberChannel = 8;
     public static final int kRightClimberChannel = 9;
     
@@ -68,6 +68,8 @@ public final class Constants {
     public static final double kHopperForwardSpeed = 0.3;
     public static final double kHopperReverseSpeed = -0.3;
     public static final double kHopperReverseDist = -6;
+
+    //Climb
     public static final double kClimberUpwardDist = 10; 
     public static final double kClimberDownwardDist = -10; 
     public static final double kClimberUpwardSpeed = 0.3;

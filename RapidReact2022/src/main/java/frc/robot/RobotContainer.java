@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.XButtonTest;
+import frc.robot.commands.ClimbCommands.ClimbWithStick;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTarget;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
@@ -22,6 +23,8 @@ import frc.robot.commands.ShooterCommands.ShooterOff;
 import frc.robot.commands.ShooterCommands.ShooterOn;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.Climb;
+import frc.robot.commands.ClimbCommands.*;
 
 public class RobotContainer {
     private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
@@ -30,6 +33,7 @@ public class RobotContainer {
     private Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
     public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
     public final static DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
+    public final static Climb m_climb = new Climb();
 
 
     RobotContainer() { 
@@ -68,5 +72,9 @@ public class RobotContainer {
       .whenPressed(new HopperOff(m_hopperSubsystem));
       new JoystickButton(testStick, JoystickButtonConstants.kR3)
       .whenPressed(new HopperReverse(m_hopperSubsystem));
+
+      //Climb
+      new JoystickButton(testStick, JoystickButtonConstants.kA)
+      .whenPressed(new ClimbWithStick(testStick, m_climb));
     }
 }

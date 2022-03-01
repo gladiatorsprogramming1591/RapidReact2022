@@ -1,25 +1,14 @@
-// /*----------------------------------------------------------------------------*/
-// /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
-// /* Open Source Software - may be modified and shared by FRC teams. The code   */
-// /* must be accompanied by the FIRST BSD license file in the root directory of */
-// /* the project.                                                               */
-// /*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import com.kauailabs.navx.frc.AHRS;
 
 public class Climb {
 
@@ -28,16 +17,14 @@ public class Climb {
   private static RelativeEncoder m_leftEncoder;
   private static RelativeEncoder m_rightEncoder;
   private MotorControllerGroup m_MCG; //"Motor Controller Group"
-  private Joystick m_stick;
 
-  public Climb(Joystick stick) {
+  public Climb() {
       m_MCG = new MotorControllerGroup(
           m_LeftMotor = new CANSparkMax(Constants.kLeftClimberChannel, MotorType.kBrushless),
           m_RightMotor = new CANSparkMax(Constants.kRightClimberChannel, MotorType.kBrushless)
         );
-      m_stick = stick;
 
-    m_LeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
+    m_LeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);  //kDriveRampRate may be ok
     m_RightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
 
     m_RightMotor.setInverted(true);
@@ -47,12 +34,13 @@ public class Climb {
   }
   
   public void setBrakeMode() {
+    System.out.println("Calling Climb.setBrakeMode");
     m_LeftMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
     m_RightMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
   }
 
   public void setCoastMode() {
-    System.out.println("Calling DriveTrainC.setCoastMode");
+    System.out.println("Calling Climb.setCoastMode");
     m_LeftMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
     m_RightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
@@ -81,5 +69,19 @@ public class Climb {
     SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
     SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
+  }
+
+  public void setClimbSpeed(double speed) {
+    m_MCG.set(speed);
+  }
+
+  public void toggleIdleMode() {
+    if(m_LeftMotor.getIdleMode() == IdleMode.kBrake) {
+      m_LeftMotor.setIdleMode(IdleMode.kCoast);
+      m_RightMotor.setIdleMode(IdleMode.kCoast);
+    } else {
+      m_LeftMotor.setIdleMode(IdleMode.kBrake);
+      m_RightMotor.setIdleMode(IdleMode.kBrake);
+    }
   }
 }
