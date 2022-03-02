@@ -65,10 +65,10 @@ public class Climb {
     // This method will be called once per scheduler run
     // This should be used for diagnostics and not used to run motors since this is used
     // in all modes, not just teleop
-    SmartDashboard.putNumber("Left Drive Enc", m_leftEncoder.getPosition());
-    SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
-    SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
-    SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
+    SmartDashboard.putNumber("Left Climb Enc", m_leftEncoder.getPosition());//NotShowingOnDashboard??_____________________
+    SmartDashboard.putNumber("Right Climb Enc", m_rightEncoder.getPosition());
+    SmartDashboard.putNumber("Left Climb Vel", m_leftEncoder.getVelocity());
+    SmartDashboard.putNumber("Right Climb Vel", m_rightEncoder.getVelocity());
   }
 
   public void setClimbSpeed(double speed) {
@@ -77,11 +77,9 @@ public class Climb {
 
   public void toggleIdleMode() {
     if(m_LeftMotor.getIdleMode() == IdleMode.kBrake) {
-      m_LeftMotor.setIdleMode(IdleMode.kCoast);
-      m_RightMotor.setIdleMode(IdleMode.kCoast);
+      setCoastMode();
     } else {
-      m_LeftMotor.setIdleMode(IdleMode.kBrake);
-      m_RightMotor.setIdleMode(IdleMode.kBrake);
+      setBrakeMode();
     }
   }
 }

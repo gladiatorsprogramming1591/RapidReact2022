@@ -53,15 +53,15 @@ public final class Constants {
     //Encoder 
     public final static int kEncoderResolution = 42;
     
-    public final static double kShooterMotorSpeed = -0.3;
+    public final static double kShooterMotorSpeed = -0.6;
     public final static double kShooterGearRatio = 7/6;
     public final static double kNeoMaxSpeed = 5676;
     public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
     public static final PneumaticsModuleType kPCM_CANID = null;
     public static final int kArmSolenoidForwardChannel = 0; //tbd
     public static final int kArmSolenoidReverseChannel = 1; //tbd
-    public static final double kIntakeForwardSpeed = .5;
-    public static final double kIntakeReverseSpeed = -.5;
+    public static final double kIntakeForwardSpeed = .8;
+    public static final double kIntakeReverseSpeed = -.8;
     public static final double kIntakeRampRate = 0.1;
     public static final double kMinRotations = 0.2;
     public static final double kHopperRampRate = 0.1;
