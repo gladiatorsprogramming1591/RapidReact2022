@@ -10,13 +10,13 @@ public class ServoBackward extends CommandBase {
     public ServoBackward(Climb climb) {
         m_climb = climb;
 
-        addRequirements(m_climb);
+        // addRequirements(m_climb);
     }
     
     @Override
     public void initialize() {
-        System.out.println("setServoForward run once");
-        m_climb.setServoForward();
+        System.out.println("ServoBackward run once");
+        m_climb.setServoBackward();
     }
 
     @Override

@@ -10,7 +10,7 @@ import frc.robot.Constants;
  * Drive a certain number of wheel rotations, using PID to keep robot driving straight 
  * and reach its destination quickly and accurately.
  */
-public class PIDDriveToTarget extends CommandBase{
+public class PIDDriveToTargetVision extends CommandBase{
     private final DriveTrainC m_driveTrainC;
     private PIDController anglePID = new PIDController(Constants.kPIDDriveRotP, Constants.kPIDDriveRotI, Constants.kPIDDriveRotD);
     private PIDController drivePID = new PIDController(Constants.kPIDDriveP, Constants.kPIDDriveI, Constants.kPIDDriveD);
@@ -18,7 +18,7 @@ public class PIDDriveToTarget extends CommandBase{
     private double m_driveSetpoint = Constants.kTargetHeight;
     private int invalidTargetLoopCount = 0; 
 
-    public PIDDriveToTarget(DriveTrainC driveTrainC) {
+    public PIDDriveToTargetVision(DriveTrainC driveTrainC) {
         addRequirements(driveTrainC);
         m_driveTrainC = driveTrainC;
 

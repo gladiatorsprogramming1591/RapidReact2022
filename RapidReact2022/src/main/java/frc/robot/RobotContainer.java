@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
-import frc.robot.commands.DriveTrainCommands.PIDDriveToTarget;
+import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
@@ -68,7 +68,7 @@ public class RobotContainer {
 
         //PIDDriveToTarget
         new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
-        .whenPressed(new PIDDriveToTarget(m_driveTrain)); 
+        .whenPressed(new PIDDriveToTargetVision(m_driveTrain)); 
 
 
       // TEST STICK
@@ -86,7 +86,7 @@ public class RobotContainer {
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
       new JoystickButton(testStick, JoystickButtonConstants.kB)//NotInterupting_______________________________
-      .whenPressed(new ServoForward(m_climb));
+      .whenPressed(new ServoBackward(m_climb));
       new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
       .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
       new POVButton(testStick, JoystickButtonConstants.kPOV_RIGHT)
@@ -101,5 +101,9 @@ public class RobotContainer {
       new JoystickButton(testStick, JoystickButtonConstants.kB)
       .whenPressed(new ClimbNudgeRightDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
+      new JoystickButton(testStick, JoystickButtonConstants.kL3)
+      .whenPressed(new ServoForward(m_climb));
+      new JoystickButton(testStick, JoystickButtonConstants.kR3)
+      .whenPressed(new ServoBackward(m_climb));
     }
 }

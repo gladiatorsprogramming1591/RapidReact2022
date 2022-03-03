@@ -10,13 +10,13 @@ public class ServoForward extends CommandBase {
     public ServoForward(Climb climb) {
         m_climb = climb;
 
-        addRequirements(m_climb);
+        // addRequirements(m_climb);
     }
     
     @Override
     public void initialize() {
-        System.out.println("ToggleIdleMode run once");
-        m_climb.toggleIdleMode();
+        System.out.println("setServoForward run once");
+        m_climb.setServoForward();
     }
 
     @Override
