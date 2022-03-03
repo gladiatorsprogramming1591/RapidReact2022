@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import frc.robot.subsystems.Climb;
 
 public final class Constants {
     // Controller Ports
@@ -18,6 +19,10 @@ public final class Constants {
     public static final int kHopperChannel = 6; //ID 5 for P-Bot
     public static final int kLeftClimberChannel = 8;
     public static final int kRightClimberChannel = 9;
+
+    // pwm channels 
+    public static final int kServoChannel = 0; 
+
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.4;
@@ -74,4 +79,12 @@ public final class Constants {
     public static final double kClimberDownwardDist = -10; 
     public static final double kClimberUpwardSpeed = 0.3;
     public static final double kClimberDownwardSpeed = -0.3;
+    public static final double kClimbStopDist = 2;
+    public static final double kClimbTopPos = 141.2; 
+    public static final double kClimbTwoInches = 11.5; 
+    public static final double kClimbTest = 40;
+    public static final double kClimberNudgeSpeed = -0.2;
+    public static final double kNudgeTime = 0.2;
+    public static final double kServoForwardAngle = 90;
+    public static final double kServoBackwardAngle = 135;
 }

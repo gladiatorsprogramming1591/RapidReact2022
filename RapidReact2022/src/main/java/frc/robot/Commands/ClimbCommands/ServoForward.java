@@ -3,11 +3,11 @@ package frc.robot.commands.ClimbCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climb;
 
-public class ToggleIdleMode extends CommandBase {
+public class ServoForward extends CommandBase {
 
     private Climb m_climb;
 
-    public ToggleIdleMode(Climb climb) {
+    public ServoForward(Climb climb) {
         m_climb = climb;
 
         addRequirements(m_climb);

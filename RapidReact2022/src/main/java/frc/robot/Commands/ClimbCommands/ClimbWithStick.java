@@ -14,11 +14,13 @@ public class ClimbWithStick extends CommandBase {
     public ClimbWithStick(Joystick stick, Climb climb){
         m_stick = stick;
         m_climb = climb;
+
+        addRequirements(m_climb);
     }
 
     @Override
     public void initialize() {
-        System.out.println("ClimbWithStick init");
+        System.out.println("ClimbWithStick init: LtEncPos: " + m_climb.getLeftEncPos() + " RtEncPos: " + m_climb.getRightEncPos());
     }
 
     @Override
@@ -36,7 +38,7 @@ public class ClimbWithStick extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("ClimbWithStick end");
+        System.out.println("ClimbWithStick end: LtEncPos: " + m_climb.getLeftEncPos() + " RtEncPos: " + m_climb.getRightEncPos());
     }
 
     @Override

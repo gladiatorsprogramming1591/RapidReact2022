@@ -3,11 +3,11 @@ package frc.robot.commands.ClimbCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climb;
 
-public class ToggleIdleMode extends CommandBase {
+public class ServoBackward extends CommandBase {
 
     private Climb m_climb;
 
-    public ToggleIdleMode(Climb climb) {
+    public ServoBackward(Climb climb) {
         m_climb = climb;
 
         addRequirements(m_climb);
@@ -15,8 +15,8 @@ public class ToggleIdleMode extends CommandBase {
     
     @Override
     public void initialize() {
-        System.out.println("ToggleIdleMode run once");
-        m_climb.toggleIdleMode();
+        System.out.println("setServoForward run once");
+        m_climb.setServoForward();
     }
 
     @Override

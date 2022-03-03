@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
-import frc.robot.commands.ClimbCommands.ClimbWithStick;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTarget;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
@@ -58,7 +57,7 @@ public class RobotContainer {
         .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
         new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
         .whenPressed((Command) new IntakeReverse(m_IntakeSubsystem));
-        new POVButton(m_driverStick, 0)  //Up (0=Up, 90=Right, 180=Down, 270=Left)
+        new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)  //Up (0=Up, 90=Right, 180=Down, 270=Left)
         .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
 
         //Shooter
@@ -87,6 +86,20 @@ public class RobotContainer {
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
       new JoystickButton(testStick, JoystickButtonConstants.kB)//NotInterupting_______________________________
-      .whenPressed(new ToggleIdleMode(m_climb));
+      .whenPressed(new ServoForward(m_climb));
+      new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
+      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
+      new POVButton(testStick, JoystickButtonConstants.kPOV_RIGHT)
+      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTwoInches));
+      new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
+      .whenPressed(new ClimbToPosition(m_climb, 0));
+      new POVButton(testStick, JoystickButtonConstants.kStart)
+      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTest)); 
+      new JoystickButton(testStick, JoystickButtonConstants.kX)
+      .whenPressed(new ClimbNudgeLeftDown(m_climb)
+      .withTimeout(Constants.kNudgeTime));
+      new JoystickButton(testStick, JoystickButtonConstants.kB)
+      .whenPressed(new ClimbNudgeRightDown(m_climb)
+      .withTimeout(Constants.kNudgeTime));
     }
 }
