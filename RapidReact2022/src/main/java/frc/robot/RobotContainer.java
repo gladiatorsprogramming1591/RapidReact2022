@@ -145,3 +145,8 @@ COMPLETED:
 PENDING TEST:
 -FIX SLOW MODE
 */
+
+/*
+-Program new motor controllers (CAN ID 10 AND 5)
+-Intake motor controller current limit: set to 50
+*/
