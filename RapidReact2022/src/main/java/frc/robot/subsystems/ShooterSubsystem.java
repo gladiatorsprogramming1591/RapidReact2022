@@ -12,15 +12,11 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase{
     CANSparkMax m_shooterMotor;
     RelativeEncoder m_encoder;
-    private double m_maxSpeed;
-    private double m_minSpeed;
     double m_targetVelocity;
 
     public ShooterSubsystem(){
       m_shooterMotor = new CANSparkMax(Constants.kShooterMotorPort, MotorType.kBrushless);
       m_shooterMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
-      m_maxSpeed = Constants.kNeoMaxSpeed;
-      m_minSpeed = -Constants.kNeoMaxSpeed;
 
       m_encoder = m_shooterMotor.getEncoder();
     }
@@ -30,17 +26,8 @@ public class ShooterSubsystem extends SubsystemBase{
       }
 
       public void setShooterSpeed(double speed) {
-        if (speed < m_minSpeed || speed > m_maxSpeed) {
-          System.out.println("Invalid speed set for shooter, " + speed);
-          m_shooterMotor.setVoltage(0);
-        } else {
-          // m_shooterMotor.getPIDController().setFF(speed * 1 + 0);
-          m_targetVelocity = speed;
-          System.out.println("Setting shooter speed to " + Constants.kShooterMotorSpeed);
-          // System.out.println("Setting shooter speed to " + speed);
-          // m_shooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);
-          m_shooterMotor.set(Constants.kShooterMotorSpeed);
-        }
+        m_shooterMotor.set(speed);
+        
       }
     
       public boolean isShooterAtSpeed() {
@@ -51,7 +38,7 @@ public class ShooterSubsystem extends SubsystemBase{
         @Override
         public void periodic() {
           // This method will be called once per scheduler run
-          SmartDashboard.putString("Shooter Speed", "" + Math.round(m_encoder.getVelocity()));
+          SmartDashboard.putString("Shooter Vel", "" + Math.round(m_encoder.getVelocity()));
         }
 
 

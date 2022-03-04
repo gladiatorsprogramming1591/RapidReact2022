@@ -15,18 +15,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class SlowDrive extends CommandBase {
+public class ToggleDriveMode extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
   private double m_AxisForward;
   private double m_AxisTurning;
+  private boolean m_SquaredInput;
+  private static int DriveMode = 1; //0=Slow, 1=Fast
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SlowDrive(DriveTrain driveTrain) {
+  public ToggleDriveMode(DriveTrain driveTrain) {
     m_driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
@@ -35,15 +37,28 @@ public class SlowDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putBoolean("Slow Drive", true);
-    m_driveTrain.setSlowDrive();
+    System.out.println("ToggleDriveMode mode: " + DriveMode);
+    if (DriveMode == 0) {
+      DriveMode = 1;
+      SmartDashboard.putBoolean("Fast Drive", true);
+    } else {
+      DriveMode = 0;
+      SmartDashboard.putBoolean("Fast Drive", false);
+    }
   }
 
   @Override
   public void execute() {
-    m_AxisForward = m_driveTrain.getAxisForward() * Constants.kSlowDriveScalar;
-    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowTurnScalar;
-    m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
+    if (DriveMode == 0) {
+      m_AxisForward = m_driveTrain.getAxisForward() * Constants.kSlowDriveScalar;
+      m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowTurnScalar;
+      m_SquaredInput = Constants.kSlowSquaredInputs;
+    } else {
+      m_AxisForward = m_driveTrain.getAxisForward() * Constants.kFastDriveScalar;
+      m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kFastTurnScalar;
+      m_SquaredInput = Constants.kFastSquaredInputs;
+    }
+    m_driveTrain.drive(m_AxisForward, m_AxisTurning,m_SquaredInput);
   }
 
   // Called once the command ends or is interrupted.

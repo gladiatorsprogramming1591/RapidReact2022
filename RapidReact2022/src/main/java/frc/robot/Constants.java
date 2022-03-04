@@ -14,9 +14,9 @@ public final class Constants {
     public final static int kCbotRearLeftMotorCANID = 2;
     public final static int kCbotFrontRightMotorCANID = 3;
     public final static int kCbotRearRightMotorCANID = 4;
-    public static final int kShooterMotorPort = 5; //ID 6 for P-Bot
+    public static final int kShooterMotorPort = 6; //ID 6 for P-Bot 5 for C-Bot
     public static final int kIntakeChannel = 7; //works on old robot although labels are swapped
-    public static final int kHopperChannel = 6; //ID 5 for P-Bot
+    public static final int kHopperChannel = 5; //ID 5 for P-Bot 6 for C-Bot
     public static final int kLeftClimberChannel = 8;
     public static final int kRightClimberChannel = 9;
 
@@ -49,7 +49,7 @@ public final class Constants {
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
     public final static double kSlowDriveScalar = 0.3;  // with squared inputs, sets max speed to 9%
-    public final static double kFastDriveScalar = 0.4;  // with squared inputs, sets max speed to 16%
+    public final static double kFastDriveScalar = 0.5;  // with squared inputs, sets max speed to 25%
     public final static double kSlowTurnScalar = 0.5;
     public final static double kFastTurnScalar = 0.8;
     public final static double kDriveRampRate = 0.1;
@@ -58,15 +58,17 @@ public final class Constants {
     //Encoder 
     public final static int kEncoderResolution = 42;
     
-    public final static double kShooterMotorSpeed = -0.8;
+    public final static double kHighGoalSpeed = -0.8;
+    public final static double kLowGoalSpeed = -0.5;
+    public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;
     public final static double kNeoMaxSpeed = 5676;
-    public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
+    public final static double kShooterMotorSpeedRPM = kHighGoalSpeed*kNeoMaxSpeed*kShooterGearRatio;
     public static final PneumaticsModuleType kPCM_CANID = null;
     public static final int kArmSolenoidForwardChannel = 0; //tbd
     public static final int kArmSolenoidReverseChannel = 1; //tbd
-    public static final double kIntakeForwardSpeed = .7;
-    public static final double kIntakeReverseSpeed = -.6;
+    public static final double kIntakeForwardSpeed = 0.3;
+    public static final double kIntakeReverseSpeed = -0.3;
     public static final double kIntakeRampRate = 0.1;
     public static final double kMinRotations = 0.2;
     public static final double kHopperRampRate = 0.1;

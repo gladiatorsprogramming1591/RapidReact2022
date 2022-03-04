@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
-import frc.robot.commands.DriveTrainCommands.SlowDrive;
+import frc.robot.commands.DriveTrainCommands.ToggleDriveMode;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
@@ -28,60 +28,64 @@ import frc.robot.subsystems.Climb;
 import frc.robot.commands.ClimbCommands.*;
 
 public class RobotContainer {
-    private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-    private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
-    private HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
-    private Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
-    public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
-    public final static DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
-    public final static Climb m_climb = new Climb();
+  public final static boolean isCBot = true;
+  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
+  private HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
+  private Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
+  public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
+  public final static DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
+  public static Climb m_climb;
 
+  RobotContainer() { 
+    System.out.println("RobotContainer c'tor");
+    SmartDashboard.putString("Hello World", "I am Robot");
+    //new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+    //.whileHeld(new XButtonTest()); 
 
-    RobotContainer() { 
-            System.out.println("RobotContainer c'tor");
-        SmartDashboard.putString("Hello World", "I am Robot");
-        //new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
-        //.whileHeld(new XButtonTest()); 
+    if (isCBot) {
+      m_climb = new Climb();
+    }
+  
 
+    // DRIVE STICK
 
-        // DRIVE STICK
+    // ---DRIVE TRAIN--- 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
+      .whenPressed(new ToggleDriveMode(m_driveTrain));
 
-            // ---DRIVE TRAIN--- 
-     new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
-       .whenPressed(new SlowDrive(m_driveTrain));
-     new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
-       .whenPressed(new FastDrive(m_driveTrain));
+      //Intake
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
+      .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
+      .whenPressed((Command) new IntakeReverse(m_IntakeSubsystem));
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kBack)  
+      .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
 
-       //Intake
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
-        .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
-        .whenPressed((Command) new IntakeReverse(m_IntakeSubsystem));
-        new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)  //Up (0=Up, 90=Right, 180=Down, 270=Left)
-        .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
+      //Shooter
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
+    .whenPressed(new ShooterOn(m_shooterSubsystem, Constants.kHighGoalSpeed));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
+    .whenPressed(new ShooterOff(m_shooterSubsystem));
 
-        //Shooter
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
-      .whenPressed(new ShooterOn(m_shooterSubsystem));
-      new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
-      .whenPressed(new ShooterOff(m_shooterSubsystem));
+      //PIDDriveToTarget
+      new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
+      .whenPressed(new PIDDriveToTargetVision(m_driveTrain)); 
 
-        //PIDDriveToTarget
-        new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
-        .whenPressed(new PIDDriveToTargetVision(m_driveTrain)); 
+      //Hopper
+    new POVButton(m_driverStick, JoystickButtonConstants.kPOV_UP)
+    .whenPressed(new HopperAdvance(m_hopperSubsystem)
+    .withTimeout(1.0));
+    new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)//Gio: kB for Easy Cancel
+    .whenPressed(new HopperOff(m_hopperSubsystem));
+    new POVButton(m_driverStick, JoystickButtonConstants.kPOV_DOWN)
+    .whenPressed(new HopperReverse(m_hopperSubsystem));
+
 
 
       // TEST STICK
 
-      //Hopper
-      new JoystickButton(testStick, JoystickButtonConstants.kR1)//Gio:UpOnD-Pad
-      .whenPressed(new HopperAdvance(m_hopperSubsystem)
-      .withTimeout(1.0));
-      new JoystickButton(testStick, JoystickButtonConstants.kY)//Gio:kBforEasyCancel
-      .whenPressed(new HopperOff(m_hopperSubsystem));
-      new JoystickButton(testStick, JoystickButtonConstants.kR2)//Gio:DownOnD-Pad
-      .whenPressed(new HopperReverse(m_hopperSubsystem));
-
+    if (isCBot) {
       //Climb
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
@@ -93,7 +97,7 @@ public class RobotContainer {
       .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTwoInches));
       new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
       .whenPressed(new ClimbToPosition(m_climb, 0));
-      new POVButton(testStick, JoystickButtonConstants.kStart)
+      new JoystickButton(testStick, JoystickButtonConstants.kStart)
       .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTest)); 
       new JoystickButton(testStick, JoystickButtonConstants.kX)
       .whenPressed(new ClimbNudgeLeftDown(m_climb)
@@ -105,5 +109,39 @@ public class RobotContainer {
       .whenPressed(new ServoForward(m_climb));
       new JoystickButton(testStick, JoystickButtonConstants.kR3)
       .whenPressed(new ServoBackward(m_climb));
+
+      new JoystickButton(testStick, JoystickButtonConstants.kR3)
+      .whenPressed(new ServoBackward(m_climb));
+      new JoystickButton(testStick, JoystickButtonConstants.kR3)
+      .whenPressed(new ServoBackward(m_climb));
+
     }
+  }
+
 }
+
+
+/*
+-FULL CHUCK OPTION
+-MINIMUM SPEED SHOOTER OPTION
+-REGERGITATE ALL OPTION
+-SHOOT ONE OPTION
+-"NUDGE" OPTION FOR INTAKE
+
+-RIGHT D-PAD REGERGITATE ALL
+
+-FIX TURNIG LEFT TOO FAST (SENSITIVE)
+
+NOTES:: When ball is at the top of the hopper between the "stopper" and hopper belts,
+hopper does not advance (too little power?).
+
+
+COMPLETED:
+-UP ON D-PAD --ADVANCE HOPPER
+-DOWN D-PAD REVERSE HOPPER (JUST HOPPER)
+-ALL CLIMB POSTITIONS TO TESTSTICK
+-kA: ENABLE SLOW     kA:ENABLE FAST
+
+PENDING TEST:
+-FIX SLOW MODE
+*/
