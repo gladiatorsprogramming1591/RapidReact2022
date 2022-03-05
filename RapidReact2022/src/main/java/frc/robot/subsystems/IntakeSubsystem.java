@@ -3,8 +3,10 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
@@ -19,23 +21,47 @@ import frc.robot.Constants;
  */
 public class IntakeSubsystem extends SubsystemBase {
 
-    private final CANSparkMax m_intakeMotor;
+    private final CANSparkMax m_intakeLeftMotor;
+    private final CANSparkMax m_intakeRightMotor;
+    private MotorControllerGroup m_MCG;
 
     public IntakeSubsystem() {
-        m_intakeMotor = new CANSparkMax(Constants.kIntakeChannel, MotorType.kBrushless);
+        if (RobotContainer.isCBot){
+            m_MCG = new MotorControllerGroup(
+                m_intakeLeftMotor = new CANSparkMax(Constants.kIntakeLeftChannel, MotorType.kBrushless),
+                m_intakeRightMotor = new CANSparkMax(Constants.kIntakeRightChannel, MotorType.kBrushless)
+            );
+            m_intakeRightMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
+        } else{
+            m_intakeLeftMotor = new CANSparkMax(Constants.kIntakeLeftChannel, MotorType.kBrushless);
+            m_intakeRightMotor = null;
+        }
 
-        m_intakeMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
+        m_intakeLeftMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
     }
+    
     public void intakeOn() {
-        m_intakeMotor.set(Constants.kIntakeForwardSpeed);
+        if (RobotContainer.isCBot){
+            m_MCG.set(Constants.kIntakeForwardSpeed);
+        } else {
+            m_intakeLeftMotor.set(Constants.kIntakeForwardSpeed);
+        }
     }
 
     public void intakeReverse() {
-        m_intakeMotor.set(Constants.kIntakeReverseSpeed);
+        if (RobotContainer.isCBot){
+            m_MCG.set(Constants.kIntakeReverseSpeed);
+        } else {
+            m_intakeLeftMotor.set(Constants.kIntakeReverseSpeed);
+        }
     }
 
     public void intakeOff() {
-        m_intakeMotor.set(0);
+        if (RobotContainer.isCBot){
+        m_MCG.set(0);
+        } else {
+            m_intakeLeftMotor.set(0);
+        }
     }
 
 }

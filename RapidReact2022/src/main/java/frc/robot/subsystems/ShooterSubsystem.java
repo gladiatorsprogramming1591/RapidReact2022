@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase{
     CANSparkMax m_shooterMotor;
@@ -15,7 +16,11 @@ public class ShooterSubsystem extends SubsystemBase{
     double m_targetVelocity;
 
     public ShooterSubsystem(){
-      m_shooterMotor = new CANSparkMax(Constants.kShooterMotorPort, MotorType.kBrushless);
+      if(RobotContainer.isCBot){
+        m_shooterMotor = new CANSparkMax(Constants.kShooterChannel, MotorType.kBrushless);
+      } else {
+        m_shooterMotor = new CANSparkMax(Constants.kPBotShooterChannel, MotorType.kBrushless);
+      }
       m_shooterMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
 
       m_encoder = m_shooterMotor.getEncoder();

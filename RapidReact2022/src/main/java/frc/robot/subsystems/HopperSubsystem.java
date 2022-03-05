@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
@@ -25,7 +26,11 @@ public class HopperSubsystem extends SubsystemBase {
     private final CANSparkMax m_hopperMotor;
 
     public HopperSubsystem() {
-        m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
+        if (RobotContainer.isCBot){
+            m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
+        } else {
+            m_hopperMotor = new CANSparkMax(Constants.kPBotHopperChannel, MotorType.kBrushless);
+        }
 
         m_hopperMotor.setOpenLoopRampRate(Constants.kHopperRampRate);
 

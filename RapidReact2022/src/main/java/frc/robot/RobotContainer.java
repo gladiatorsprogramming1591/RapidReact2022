@@ -52,7 +52,8 @@ public class RobotContainer {
 
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
-      .whenPressed(new ToggleDriveMode(m_driveTrain));
+      .toggleWhenPressed(new ToggleDriveMode(m_driveTrain));
+      
 
       //Intake
       new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
@@ -89,7 +90,7 @@ public class RobotContainer {
       //Climb
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
-      new JoystickButton(testStick, JoystickButtonConstants.kB)//NotInterupting_______________________________
+      new JoystickButton(testStick, JoystickButtonConstants.kB)
       .whenPressed(new ServoBackward(m_climb));
       new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
       .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
@@ -122,31 +123,43 @@ public class RobotContainer {
 
 
 /*
+PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
+
+-SHOOT ONE OPTION
+-REGERGITATE ALL OPTION -- LEFT POV (POSSIBLY TESTSTICK)
 -FULL CHUCK OPTION
 -MINIMUM SPEED SHOOTER OPTION
--REGERGITATE ALL OPTION
--SHOOT ONE OPTION
 -"NUDGE" OPTION FOR INTAKE
 
 -RIGHT D-PAD REGERGITATE ALL
 
--FIX TURNIG LEFT TOO FAST (SENSITIVE)
+RESEARCH:
+-Look into Thunderclap's drive ecoder; possible copy and paste
+-Look into DeepSpace's camera server group to reference for including Microsoft Camera
 
-NOTES:: When ball is at the top of the hopper between the "stopper" and hopper belts,
+
+
+NOTES:: -When ball is at the top of the hopper between the "stopper" and hopper belts,
 hopper does not advance (too little power?).
+-Justin brought up that belts of intake seem to skip when  when manually turned ontop of ball,
+have not tested if the same ran by the motor.
+-CANbus connection has faulty connection
 
 
 COMPLETED:
+3/3/22
 -UP ON D-PAD --ADVANCE HOPPER
 -DOWN D-PAD REVERSE HOPPER (JUST HOPPER)
 -ALL CLIMB POSTITIONS TO TESTSTICK
 -kA: ENABLE SLOW     kA:ENABLE FAST
+-FIX TURNIG LEFT TOO FAST (SENSITIVE)*** --Bad Joystick
+
+3/4/22
+-Program new motor controllers (CAN ID 10 AND 5)
+-Intake motor controller current limit: set to 50 --set all to 50
+-Programmed 2nd intake motor
+-Found 25ft Ethernet Cable
+-FIX SLOW MODE (and simplified) --Used .toggleWhenPressed
 
 PENDING TEST:
--FIX SLOW MODE
-*/
-
-/*
--Program new motor controllers (CAN ID 10 AND 5)
--Intake motor controller current limit: set to 50
 */
