@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
-import frc.robot.commands.DriveTrainCommands.ToggleDriveMode;
+import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
@@ -25,6 +25,7 @@ import frc.robot.commands.ShooterCommands.ShooterOn;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.LatchServos;
 import frc.robot.commands.ClimbCommands.*;
 
 public class RobotContainer {
@@ -36,6 +37,7 @@ public class RobotContainer {
   public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
   public final static DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
   public static Climb m_climb;
+  public static LatchServos m_latchServos;
 
   RobotContainer() { 
     System.out.println("RobotContainer c'tor");
@@ -43,6 +45,7 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
     //.whileHeld(new XButtonTest()); 
 
+    m_latchServos = new LatchServos();
     if (isCBot) {
       m_climb = new Climb();
     }
@@ -52,7 +55,7 @@ public class RobotContainer {
 
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
-      .toggleWhenPressed(new ToggleDriveMode(m_driveTrain));
+      .toggleWhenPressed(new SlowDrive(m_driveTrain, m_driverStick));
       
 
       //Intake
@@ -90,8 +93,6 @@ public class RobotContainer {
       //Climb
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
-      new JoystickButton(testStick, JoystickButtonConstants.kB)
-      .whenPressed(new ServoBackward(m_climb));
       new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
       .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
       new POVButton(testStick, JoystickButtonConstants.kPOV_RIGHT)
@@ -106,16 +107,12 @@ public class RobotContainer {
       new JoystickButton(testStick, JoystickButtonConstants.kB)
       .whenPressed(new ClimbNudgeRightDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
+
+
       new JoystickButton(testStick, JoystickButtonConstants.kL3)
-      .whenPressed(new ServoForward(m_climb));
+      .whenPressed(new ServoForward(m_latchServos));
       new JoystickButton(testStick, JoystickButtonConstants.kR3)
-      .whenPressed(new ServoBackward(m_climb));
-
-      new JoystickButton(testStick, JoystickButtonConstants.kR3)
-      .whenPressed(new ServoBackward(m_climb));
-      new JoystickButton(testStick, JoystickButtonConstants.kR3)
-      .whenPressed(new ServoBackward(m_climb));
-
+      .whenPressed(new ServoBackward(m_latchServos));
     }
   }
 

@@ -36,7 +36,7 @@ public class FastDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putBoolean("Slow Drive", false);
+    SmartDashboard.putBoolean("Fast Drive", true);
     m_driveTrain.setFastDrive();
   }
 

@@ -31,6 +31,7 @@ public class IntakeSubsystem extends SubsystemBase {
                 m_intakeLeftMotor = new CANSparkMax(Constants.kIntakeLeftChannel, MotorType.kBrushless),
                 m_intakeRightMotor = new CANSparkMax(Constants.kIntakeRightChannel, MotorType.kBrushless)
             );
+            m_intakeRightMotor.setInverted(true);
             m_intakeRightMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
         } else{
             m_intakeLeftMotor = new CANSparkMax(Constants.kIntakeLeftChannel, MotorType.kBrushless);

@@ -19,15 +19,14 @@ public class Climb extends SubsystemBase {
   private static RelativeEncoder m_leftEncoder;
   private static RelativeEncoder m_rightEncoder;
   private MotorControllerGroup m_MCG; //"Motor Controller Group"
-  private double zeroPos = 0; 
-  private static Servo m_Servo;
-
+  private double zeroPos = 0;
+  
   public Climb() {
       m_MCG = new MotorControllerGroup(
           m_LeftMotor = new CANSparkMax(Constants.kLeftClimberChannel, MotorType.kBrushless),
           m_RightMotor = new CANSparkMax(Constants.kRightClimberChannel, MotorType.kBrushless)
         );
-      m_Servo = new Servo(Constants.kServoChannel);
+
 
     // Don't use open loop ramp rate with PID
     // Also, climb start/stop should be OK without a ramp
@@ -107,13 +106,5 @@ public class Climb extends SubsystemBase {
     } else {
       setBrakeMode();
     }
-  }
-
-  public void setServoForward(){
-    m_Servo.setAngle(Constants.kServoForwardAngle);
-  }
-
-  public void setServoBackward(){
-    m_Servo.setAngle(Constants.kServoBackwardAngle);
   }
 }

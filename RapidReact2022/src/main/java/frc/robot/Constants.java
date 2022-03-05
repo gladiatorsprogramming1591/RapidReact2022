@@ -1,7 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.LatchServos;
 
 public final class Constants {
     // Controller Ports
@@ -24,7 +24,9 @@ public final class Constants {
     public static final int kPBotShooterChannel = 6;
 
     // pwm channels 
-    public static final int kServoChannel = 0; 
+    public static final int kLeftServoChannel = 8;
+    public static final int kRightServoChannel = 9;
+
 
     
         // PIDDriveEncoder
@@ -56,12 +58,12 @@ public final class Constants {
     public final static double kSlowTurnScalar = 0.5;
     public final static double kFastTurnScalar = 0.8;
     public final static double kDriveRampRate = 0.1;
-    public final static double kTargetHeight = 15.0;
+    public final static double kTargetHeight = -1.216;
     
     //Encoder 
     public final static int kEncoderResolution = 42;
     
-    public final static double kHighGoalSpeed = -0.8;
+    public final static double kHighGoalSpeed = -0.7;
     public final static double kLowGoalSpeed = -0.5;
     public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;
@@ -90,6 +92,10 @@ public final class Constants {
     public static final double kClimbTest = 40;
     public static final double kClimberNudgeSpeed = -0.2;
     public static final double kNudgeTime = 0.2;
-    public static final double kServoForwardAngle = 90;
-    public static final double kServoBackwardAngle = 135;
+
+    //Climb Latch Servos
+    public static final double kRightServoForwardAngle = 95;
+    public static final double kRightServoBackwardAngle = 115.7;
+    public static final double kLeftServoForwardAngle = 100;
+    public static final double kLeftServoBackwardAngle = 69.3;
 }

@@ -8,6 +8,7 @@
 package frc.robot.commands.DriveTrainCommands;
 
 import frc.robot.Constants;
+import frc.robot.JoystickButtonConstants;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,22 +17,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class ToggleDriveMode extends CommandBase {
+public class SlowDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
   private double m_AxisForward;
   private double m_AxisTurning;
   private boolean m_SquaredInput;
   // private static int DriveMode = 1; //0=Slow, 1=Fast
-  // private Joystick m_button;
+  private Joystick m_joystick;
 
   /**
    * Creates a new ExampleCommand.
    
    * @param subsystem The subsystem used by this command.
    */
-  public ToggleDriveMode(DriveTrain driveTrain) {
+  public SlowDrive(DriveTrain driveTrain, Joystick joystick) {
     m_driveTrain = driveTrain;
+    m_joystick = joystick;
 
     addRequirements(driveTrain);
   }
@@ -50,18 +52,22 @@ public class ToggleDriveMode extends CommandBase {
     m_SquaredInput = Constants.kFastSquaredInputs;
     
     m_driveTrain.drive(m_AxisForward, m_AxisTurning,m_SquaredInput);
+    boolean isPressed = m_joystick.getRawButtonPressed(JoystickButtonConstants.kB);
+    SmartDashboard.putBoolean("B Pressed", isPressed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putBoolean("Fast Drive", true);
+    // SmartDashboard.putBoolean("Fast Drive", true);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
+    
+
   }
 }
 
