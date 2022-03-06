@@ -37,6 +37,7 @@ public class FastDrive extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putBoolean("Fast Drive", true);
+    m_driveTrain.setCoastMode();
     m_driveTrain.setFastDrive();
   }
 

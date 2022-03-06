@@ -32,6 +32,8 @@ public class HopperSubsystem extends SubsystemBase {
             m_hopperMotor = new CANSparkMax(Constants.kPBotHopperChannel, MotorType.kBrushless);
         }
 
+        m_hopperMotor.enableVoltageCompensation(12);
+
         m_hopperMotor.setOpenLoopRampRate(Constants.kHopperRampRate);
 
         m_hopperEncoder = m_hopperMotor.getEncoder();

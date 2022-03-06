@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.ShooterCommands.ShooterOn;
 
 public class ShooterSubsystem extends SubsystemBase{
     CANSparkMax m_shooterMotor;
@@ -23,6 +24,9 @@ public class ShooterSubsystem extends SubsystemBase{
       }
       m_shooterMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
 
+      m_shooterMotor.enableVoltageCompensation(12);
+
+      setDefaultCommand(new ShooterOn(this));
       m_encoder = m_shooterMotor.getEncoder();
     }
 

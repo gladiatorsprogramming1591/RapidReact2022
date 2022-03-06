@@ -42,6 +42,7 @@ public class SlowDrive extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putBoolean("Fast Drive", false);
+    m_driveTrain.setCoastMode();
   }
   
 

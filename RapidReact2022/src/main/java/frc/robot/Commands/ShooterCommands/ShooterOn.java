@@ -7,9 +7,13 @@
 
 package frc.robot.commands.ShooterCommands;
 
+import frc.robot.Constants;
+import frc.robot.JoystickButtonConstants;
 import frc.robot.subsystems.ShooterSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * An example command that uses an example subsystem.
@@ -17,8 +21,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ShooterOn extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem m_subsystem;
-  private double m_speed;
-
+  private JoystickButton m_Button;
+  private static double m_speed = Constants.kLowGoalSpeed;
+  public ShooterOn(ShooterSubsystem shooterSubsystem){
+    this(shooterSubsystem, Constants.kLowGoalSpeed);
+  }
   /**
    * Creates a new ExampleCommand.
    *
@@ -27,6 +34,8 @@ public class ShooterOn extends CommandBase {
   public ShooterOn(ShooterSubsystem shooterSubsystem, double speed) {
     m_subsystem = shooterSubsystem;
     m_speed = speed;
+    // m_Button = joystickButton;_________
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooterSubsystem);
   }
@@ -36,6 +45,13 @@ public class ShooterOn extends CommandBase {
   public void initialize() {
     System.out.println("ShooterSubsystem Calling ShooterOn with speed: " + m_speed);
     SmartDashboard.putNumber("Shoot Req Vel", m_speed);
+    // if (m_speed == Constants.kBlehSpeed) {
+    //   m_speed = Constants.kHighGoalSpeed;
+    // } else if (m_speed == Constants.kHighGoalSpeed) {
+    //   m_speed = Constants.kLowGoalSpeed;
+    // } else {
+    //   m_speed = Constants.kBlehSpeed;
+    // }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -57,4 +73,4 @@ public class ShooterOn extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-}
+}   //Idea: Press to  stop, release to  start

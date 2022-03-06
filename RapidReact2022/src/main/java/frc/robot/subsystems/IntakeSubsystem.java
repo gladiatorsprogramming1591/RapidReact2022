@@ -39,6 +39,8 @@ public class IntakeSubsystem extends SubsystemBase {
         }
 
         m_intakeLeftMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
+        m_intakeRightMotor.enableVoltageCompensation(12);
+        m_intakeLeftMotor.enableVoltageCompensation(12);
     }
     
     public void intakeOn() {

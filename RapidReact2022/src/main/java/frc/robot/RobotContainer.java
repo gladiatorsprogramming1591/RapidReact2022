@@ -66,12 +66,6 @@ public class RobotContainer {
       new JoystickButton(m_driverStick, JoystickButtonConstants.kBack)  
       .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
 
-      //Shooter
-      new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
-    .whenPressed(new ShooterOn(m_shooterSubsystem, Constants.kHighGoalSpeed));
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
-    .whenPressed(new ShooterOff(m_shooterSubsystem));
-
       //PIDDriveToTarget
       new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
       .whenPressed(new PIDDriveToTargetVision(m_driveTrain)); 
@@ -79,7 +73,7 @@ public class RobotContainer {
       //Hopper
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_UP)
     .whenPressed(new HopperAdvance(m_hopperSubsystem)
-    .withTimeout(1.0));
+    .withTimeout(0.1));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)//Gio: kB for Easy Cancel
     .whenPressed(new HopperOff(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_DOWN)
@@ -89,7 +83,20 @@ public class RobotContainer {
 
       // TEST STICK
 
+     //Shooter
+     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 1)
+     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kLowGoalSpeed));
+     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 2)
+     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kHighGoalSpeed));
+     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 3)
+     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kBlehSpeed));
+     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 0)
+     .whileHeld(new ShooterOff(m_shooterSubsystem));
+    //  new JoystickButton(testStick, JoystickButtonConstants.kR1)
+    //  .whenPressed(new ShooterOff(m_shooterSubsystem));
+
     if (isCBot) {
+      
       //Climb
       new JoystickButton(testStick, JoystickButtonConstants.kA)
       .whenPressed(new ClimbWithStick(testStick, m_climb));
