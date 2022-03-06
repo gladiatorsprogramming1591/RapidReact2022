@@ -9,9 +9,11 @@ public class HopperOn extends CommandBase {
 
    HopperSubsystem m_hopperSubsystem;
    private double m_initialPosition;
+   private double m_distance;
 
-   public HopperOn(HopperSubsystem hopperSubsystem) {
+   public HopperOn(HopperSubsystem hopperSubsystem, double distance) {
       m_hopperSubsystem = hopperSubsystem;
+      m_distance = distance;
 
       addRequirements(m_hopperSubsystem);
    }
@@ -19,7 +21,7 @@ public class HopperOn extends CommandBase {
    @Override
    public void initialize() {
       m_initialPosition = m_hopperSubsystem.getHopperEncPos();
-      System.out.println("HopperAdvance initial position " + m_initialPosition);
+      System.out.println("HopperOn initial position " + m_initialPosition);
    }
 
    @Override
@@ -30,14 +32,14 @@ public class HopperOn extends CommandBase {
    // Called once the command ends or is interrupted.
    public void end(boolean interrupted) {
       m_hopperSubsystem.hopperOff();
-      System.out.println("HopperAdvance end position " + m_hopperSubsystem.getHopperEncPos());
-      System.out.println("HopperAdvance change position " + (m_hopperSubsystem.getHopperEncPos()-m_initialPosition));
+      System.out.println("HopperOn end position " + m_hopperSubsystem.getHopperEncPos());
+      System.out.println("HopperOn change position " + (m_hopperSubsystem.getHopperEncPos()-m_initialPosition));
    }
 
    // Returns true when the command should end.
    @Override
    public boolean isFinished(){
-      return m_hopperSubsystem.getHopperEncPos()-m_initialPosition > Constants.kHopperAdvanceDist;
+      return m_hopperSubsystem.getHopperEncPos()-m_initialPosition > m_distance;
    }
    
 }

@@ -77,7 +77,7 @@ public class RobotContainer {
 
       //Hopper
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_UP)
-    .whenPressed(new HopperOn(m_hopperSubsystem));
+    .whenPressed(new HopperOn(m_hopperSubsystem, Constants.kHopperAdvanceDist));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)//Gio: kB for Easy Cancel
     .whenPressed(new HopperOff(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_DOWN)
@@ -138,7 +138,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new MainAutoCommand(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain);
+    return new MainAutoCommand(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
 }
 //Notes to self: figure out how to simulate motors

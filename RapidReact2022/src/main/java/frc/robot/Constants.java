@@ -114,4 +114,5 @@ public final class Constants {
     public static final double kRightServoBackwardAngle = 115.7;
     public static final double kLeftServoForwardAngle = 100;
     public static final double kLeftServoBackwardAngle = 69.3;
+    public static final double kAutoHopperDist = 6;
 }

@@ -83,6 +83,7 @@ public abstract class DriveTrain extends SubsystemBase {
  @Override
  public void periodic() {
   //  drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
+  m_differentialDrive.feedWatchdog();
 
   tx = table.getEntry("tx");
   ty = table.getEntry("ty");
