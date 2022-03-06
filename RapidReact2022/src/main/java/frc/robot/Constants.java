@@ -55,10 +55,12 @@ public final class Constants {
     public final static boolean kSlowSquaredInputs = true;
     public final static double kSlowDriveScalar = 0.4;  // with squared inputs, sets max speed to 16%
     public final static double kFastDriveScalar = 0.8;  // with squared inputs, sets max speed to 64%
+    public final static double kPushDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
     public final static double kSlowTurnScalar = 0.4;
     public final static double kFastTurnScalar = 0.7;
     public final static double kDriveRampRate = 0.1;
-    public final static double kTargetHeight = -1.216;
+    //LimeLight
+    public final static double kTargetHeight = -4.5;
     
     //Encoder 
     public final static int kEncoderResolution = 42;
@@ -72,14 +74,18 @@ public final class Constants {
     public static final PneumaticsModuleType kPCM_CANID = null;
     public static final int kArmSolenoidForwardChannel = 0; //tbd
     public static final int kArmSolenoidReverseChannel = 1; //tbd
+    //Intake
     public static final double kIntakeForwardSpeed = 0.5;
     public static final double kIntakeReverseSpeed = -0.4;
     public static final double kIntakeRampRate = 0.1;
     public static final double kMinRotations = 0.2;
+    //Hopper
     public static final double kHopperRampRate = 0.1;
     public static final double kHopperForwardSpeed = 0.4;
+    public static final double kHopperAdvanceDist = 2;
     public static final double kHopperReverseSpeed = -0.4;
     public static final double kHopperReverseDist = -2;
+
 
     //Climb
     public static final double kClimberUpwardDist = 10; 

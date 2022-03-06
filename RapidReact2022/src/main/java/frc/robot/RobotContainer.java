@@ -72,8 +72,7 @@ public class RobotContainer {
 
       //Hopper
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_UP)
-    .whenPressed(new HopperAdvance(m_hopperSubsystem)
-    .withTimeout(0.1));
+    .whenPressed(new HopperAdvance(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)//Gio: kB for Easy Cancel
     .whenPressed(new HopperOff(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_DOWN)
@@ -83,7 +82,7 @@ public class RobotContainer {
 
       // TEST STICK
 
-     //Shooter
+     //Shooter (add 4 new buttons for forward, reverse, stop, and spit)
      new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 1)
      .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kLowGoalSpeed));
      new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 2)

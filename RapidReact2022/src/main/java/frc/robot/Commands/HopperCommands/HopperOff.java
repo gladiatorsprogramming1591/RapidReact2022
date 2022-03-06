@@ -10,17 +10,15 @@ public class HopperOff extends CommandBase {
 
    public HopperOff(HopperSubsystem hopperSubsystem) {
       m_hopperSubsystem = hopperSubsystem;
-      // Use addRequirements() here to declare subsystem dependencies. ][\]
+
       addRequirements(m_hopperSubsystem);
    }
     
-   // Called when the command is initially scheduled.
    @Override
    public void initialize() {
       System.out.println("HopperSubsystem Calling HopperOff");
    }
 
-   // Called every time the scheduler runs while the command is scheduled.
    @Override
    public void execute() {
       m_hopperSubsystem.hopperOff();
