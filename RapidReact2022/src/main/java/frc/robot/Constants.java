@@ -27,7 +27,13 @@ public final class Constants {
     public static final int kLeftServoChannel = 8;
     public static final int kRightServoChannel = 9;
 
-
+    // PIDTurnToDegrees
+    public final static double kRotationP = 0.011;
+    public final static double kRotationI = 0;
+    public final static double kRotationD = 0;
+    public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
+    public final static double kStaticPowerRequirement = 0.35;
+    public final static double kAutoRotationVelocityError = 150.0;
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.4;
