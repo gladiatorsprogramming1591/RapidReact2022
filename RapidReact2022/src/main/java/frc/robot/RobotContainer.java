@@ -124,18 +124,27 @@ public class RobotContainer {
   }
 
 }
-
+//Notes to self: figure out how to simulate motors
 
 /*
-PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
-
--SHOOT ONE OPTION
+-SHOOT ONE OPTION 0 --In Progress
 -REGERGITATE ALL OPTION -- LEFT POV (POSSIBLY TESTSTICK)
 -FULL CHUCK OPTION
--MINIMUM SPEED SHOOTER OPTION
 -"NUDGE" OPTION FOR INTAKE
+-ORGANIZE SHUFFLEBOARD
+-ADD SHOOTING MODES TO S.B. (POS BOOLEANS?)
 
--RIGHT D-PAD REGERGITATE ALL
+BUTTON MAPPING:
+  MANIPULATOR STICK:
+    SHOOTER
+      (for sure)
+      -R1- HIGH GOAL SPEED
+      -R2- LOW GOAL SPEED
+      (may change)
+      -L1- BLEH SPEED
+      -L2- STOP SHOOTER
+
+(Need to figure out mapping for "regergitate all" to fit along with climb buttons)
 
 RESEARCH:
 -Look into Thunderclap's drive ecoder; possible copy and paste
@@ -144,12 +153,22 @@ RESEARCH:
 
 
 NOTES:: -When ball is at the top of the hopper between the "stopper" and hopper belts,
-hopper does not advance (too little power?).
+hopper does not advance (too little power?). (REMAINS AN ISSUE)
 -Justin brought up that belts of intake seem to skip when  when manually turned ontop of ball,
 have not tested if the same ran by the motor.
--CANbus connection has faulty connection
+
+PENDING TEST:
+*/
 
 
+
+
+
+
+
+
+
+/*
 COMPLETED:
 3/3/22
 -UP ON D-PAD --ADVANCE HOPPER
@@ -165,5 +184,7 @@ COMPLETED:
 -Found 25ft Ethernet Cable
 -FIX SLOW MODE (and simplified) --Used .toggleWhenPressed
 
-PENDING TEST:
+3/5/22
+-PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
+-MINIMUM SPEED SHOOTER OPTION
 */

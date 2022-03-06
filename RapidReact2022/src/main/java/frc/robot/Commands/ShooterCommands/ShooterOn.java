@@ -45,13 +45,6 @@ public class ShooterOn extends CommandBase {
   public void initialize() {
     System.out.println("ShooterSubsystem Calling ShooterOn with speed: " + m_speed);
     SmartDashboard.putNumber("Shoot Req Vel", m_speed);
-    // if (m_speed == Constants.kBlehSpeed) {
-    //   m_speed = Constants.kHighGoalSpeed;
-    // } else if (m_speed == Constants.kHighGoalSpeed) {
-    //   m_speed = Constants.kLowGoalSpeed;
-    // } else {
-    //   m_speed = Constants.kBlehSpeed;
-    // }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -73,4 +66,4 @@ public class ShooterOn extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-}   //Idea: Press to  stop, release to  start
+}   //Idea: Press to  stop, release to  start (now redundant)
