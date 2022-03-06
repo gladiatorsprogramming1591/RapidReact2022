@@ -1,4 +1,6 @@
-package frc.robot.commands.PIDDrive;
+package frc.robot.commands.DriveTrainCommands.PIDDrive;
+
+import java.util.Calendar;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -24,11 +26,12 @@ public class PIDDriveEncoder extends CommandBase{
         m_motorRotations = wheelRotations * Constants.kDriveGearRatio;
 
         drivePID.setTolerance(Constants.kPIDDrivePosTol, Constants.kPIDDriveVelTol);
+        anglePID.setTolerance(Constants.kPIDAnglePosTol, Constants.kPIDAngleVelTol);
     }
 
     @Override
     public void initialize() {
-        System.out.println("--------------- PIDDriveEncoder ----------------");
+        System.out.println("---------- PIDDriveEncoder ----------");
 
         // don't bother running if we don't have to move
         if (m_motorRotations == 0) {
@@ -36,22 +39,33 @@ public class PIDDriveEncoder extends CommandBase{
             return;
         }
 
+        // Use brake mode for auto driving
+        m_driveTrainC.setBrakeMode();
+
         // set angle to keep as the angle when the command starts
         m_angleSetpoint = m_driveTrainC.getHeading();
 
         // set target encoder value relative to starting encoder value
         m_driveSetpoint = m_driveTrainC.getLeftEncPos() + m_motorRotations; // using left because right decreses as it moves forward, causing the robot to accelerate instead of deccelerate since the error is growing
+    
+        System.out.println("m_driveSetpoint: " + m_driveSetpoint + " m_angleSetpoint: " + m_angleSetpoint + "m_motorRots" + m_motorRotations);
     }
 
     @Override
     public void execute() {
         double rot = anglePID.calculate(m_driveTrainC.getHeading(), m_angleSetpoint);
-        drivePID.calculate(m_driveTrainC.getLeftEncPos(), m_driveSetpoint);
-        double drive = customEq(drivePID.getPositionError());
+        double drive = drivePID.calculate(m_driveTrainC.getLeftEncPos(), m_driveSetpoint);
+        // double drive = customEq(drivePID.getPositionError());
 
         System.out.println("PIDDriveEncoder: " + drive + " " + drivePID.getPositionError());
 
-        m_driveTrainC.drive(drive, rot, Constants.kFastSquaredInputs);
+        if (drive > 0.6){
+            drive = 0.6; 
+        } else if (drive < -0.6) {
+            drive = -0.6;
+        }
+
+        m_driveTrainC.drive(drive, 0, false);
     }
 
     @Override

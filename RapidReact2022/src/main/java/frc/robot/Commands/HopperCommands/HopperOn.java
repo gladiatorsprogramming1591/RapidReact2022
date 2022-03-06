@@ -1,5 +1,6 @@
 package frc.robot.commands.HopperCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.HopperSubsystem;
@@ -7,6 +8,7 @@ import frc.robot.subsystems.HopperSubsystem;
 public class HopperOn extends CommandBase {
 
    HopperSubsystem m_hopperSubsystem;
+   private static Timer m_timer;
 
    public HopperOn(HopperSubsystem hopperSubsystem) {
       m_hopperSubsystem = hopperSubsystem;

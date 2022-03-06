@@ -22,8 +22,8 @@ public class PIDDriveToTargetVision extends CommandBase{
         addRequirements(driveTrainC);
         m_driveTrainC = driveTrainC;
 
-        drivePID.setTolerance(Constants.kPIDDrivePosTol, Constants.kPIDDriveVelTol);
-        anglePID.setTolerance(Constants.kPIDAnglePosTol, Constants.kPIDAngleVelTol);
+        drivePID.setTolerance(Constants.kVisionPIDDrivePosTol, Constants.kVisionPIDDriveVelTol);
+        anglePID.setTolerance(Constants.kVisionPIDAnglePosTol, Constants.kPIDAngleVelTol);
     }
 
     @Override

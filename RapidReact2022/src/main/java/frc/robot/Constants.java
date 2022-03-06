@@ -28,9 +28,9 @@ public final class Constants {
     public static final int kRightServoChannel = 9;
 
     // PIDTurnToDegrees
-    public final static double kRotationP = 0.011;
-    public final static double kRotationI = 0;
-    public final static double kRotationD = 0;
+    public final static double kRotationP = 0.4;
+    public final static double kRotationI = 0.09;
+    public final static double kRotationD = 0.1;
     public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
     public final static double kStaticPowerRequirement = 0.35;
     public final static double kAutoRotationVelocityError = 150.0;
@@ -42,10 +42,14 @@ public final class Constants {
     public final static double kPIDDriveP = 0.5; //may need to tweak
     public final static double kPIDDriveI = 0.09;
     public final static double kPIDDriveD = 0.1;
-    public final static double kPIDDrivePosTol = 0.1;
-    public final static double kPIDDriveVelTol = 1.0;
-    public final static double kPIDAnglePosTol = 0.1;
-    public final static double kPIDAngleVelTol = 1.0;
+    public final static double kPIDDrivePosTol = 1.0;
+    public final static double kPIDDriveVelTol = 5.0;
+    public final static double kPIDAnglePosTol = 1.0;
+    public final static double kPIDAngleVelTol = 5.0;
+    public final static double kVisionPIDDrivePosTol = 0.1;
+    public final static double kVisionPIDDriveVelTol = 1.0;
+    public final static double kVisionPIDAnglePosTol = 0.1;
+    public final static double kVisionPIDAngleVelTol = 1.0;
     public final static double kCustomPower = 0.17;
     public final static double kCustomPowerMin = 0.08;
 
@@ -83,7 +87,7 @@ public final class Constants {
     public static final double kIntakeRampRate = 0.1;
     public static final double kMinRotations = 0.2;
     public static final double kHopperRampRate = 0.1;
-    public static final double kHopperForwardSpeed = 0.4;
+    public static final double kHopperForwardSpeed = 0.5;
     public static final double kHopperReverseSpeed = -0.4;
     public static final double kHopperReverseDist = -2;
 

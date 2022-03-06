@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
+import frc.robot.commands.AutoCommands.MainAutoCommand;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
@@ -30,12 +31,12 @@ import frc.robot.commands.ClimbCommands.*;
 
 public class RobotContainer {
   public final static boolean isCBot = true;
-  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
-  private HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
-  private Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
+  public final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  public final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
+  public final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
+  public Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
   public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
-  public final static DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
+  public final DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
   public static Climb m_climb;
   public static LatchServos m_latchServos;
 
@@ -123,6 +124,9 @@ public class RobotContainer {
     }
   }
 
+  public Command getAutonomousCommand() {
+    return new MainAutoCommand(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain);
+  }
 }
 //Notes to self: figure out how to simulate motors
 
