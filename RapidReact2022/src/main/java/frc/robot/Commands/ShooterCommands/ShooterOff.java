@@ -8,6 +8,7 @@
 package frc.robot.commands.ShooterCommands;
 
 import frc.robot.subsystems.ShooterSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -32,6 +33,7 @@ public class ShooterOff extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("ShooterSubsystem Calling ShooterOff");
+    SmartDashboard.putString("SHOOTER MODE", "Off");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,7 +44,7 @@ public class ShooterOff extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {    
+  public void end(boolean interrupted) {  
   }
 
   // Returns true when the command should end.
