@@ -22,6 +22,7 @@ public class MultiToggle extends Button {
         if (m_pressCount > 3) {
             m_pressCount = 0;
         }
+        // System.out.println("press count = "+m_pressCount);
         return (m_pressCount == m_value);
     }
     

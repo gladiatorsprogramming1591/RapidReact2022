@@ -26,7 +26,7 @@ public class ShooterSubsystem extends SubsystemBase{
 
       m_shooterMotor.enableVoltageCompensation(12);
 
-      setDefaultCommand(new ShooterOn(this));
+      // setDefaultCommand(new ShooterOn(this));
       m_encoder = m_shooterMotor.getEncoder();
     }
 

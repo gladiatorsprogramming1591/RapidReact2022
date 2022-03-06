@@ -22,7 +22,7 @@ public class ShooterOn extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem m_subsystem;
   private JoystickButton m_Button;
-  private static double m_speed = Constants.kLowGoalSpeed;
+  private double m_speed = Constants.kLowGoalSpeed;
   public ShooterOn(ShooterSubsystem shooterSubsystem){
     this(shooterSubsystem, Constants.kLowGoalSpeed);
   }
@@ -57,10 +57,10 @@ public class ShooterOn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_speed = SmartDashboard.getNumber("Shoot Req Vel", m_speed);
+    // m_speed = SmartDashboard.getNumber("Shoot Req Vel", m_speed);
     m_subsystem.setShooterSpeed(m_speed);
     SmartDashboard.putNumber("Shoot Req Vel", m_speed);
-    System.out.println("shooter speed: " + m_speed);
+    // System.out.println("shooter speed: " + m_speed);
   }
 
   // Called once the command ends or is interrupted.
