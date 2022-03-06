@@ -15,14 +15,18 @@ import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
+// import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeOff;
 import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.IntakeCommands.IntakeReverse;
+import frc.robot.commands.ShooterCommands.ShooterHighGoal;
+import frc.robot.commands.ShooterCommands.ShooterLowGoal;
 import frc.robot.commands.ShooterCommands.ShooterOff;
-import frc.robot.commands.ShooterCommands.ShooterOn;
+import frc.robot.commands.ShooterCommands.ShooterSpit;
+// import frc.robot.commands.ShooterCommands.ShooterOn;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.Climb;
@@ -73,8 +77,7 @@ public class RobotContainer {
 
       //Hopper
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_UP)
-    .whenPressed(new HopperAdvance(m_hopperSubsystem)
-    .withTimeout(0.1));
+    .whenPressed(new HopperOn(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_LEFT)//Gio: kB for Easy Cancel
     .whenPressed(new HopperOff(m_hopperSubsystem));
     new POVButton(m_driverStick, JoystickButtonConstants.kPOV_DOWN)
@@ -84,31 +87,32 @@ public class RobotContainer {
 
       // TEST STICK
 
-     //Shooter
-     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 1)
-     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kLowGoalSpeed));
-     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 2)
-     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kHighGoalSpeed));
-     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 3)
-     .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kBlehSpeed));
-     new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 0)
-     .whileHeld(new ShooterOff(m_shooterSubsystem));
-    //  new JoystickButton(testStick, JoystickButtonConstants.kR1)
-    //  .whenPressed(new ShooterOff(m_shooterSubsystem));
+     //Shooter (add 4 new buttons for forward, reverse, stop, and spit)
+
+     new JoystickButton(testStick, JoystickButtonConstants.kR2)
+     .whenPressed(new ShooterLowGoal(m_shooterSubsystem));
+     new JoystickButton(testStick, JoystickButtonConstants.kR1)
+     .whenPressed(new ShooterHighGoal(m_shooterSubsystem));
+     new JoystickButton(testStick, JoystickButtonConstants.kL2)
+     .whenPressed(new ShooterOff(m_shooterSubsystem));
+     new JoystickButton(testStick, JoystickButtonConstants.kL1)
+     .whenPressed(new ShooterSpit(m_shooterSubsystem));
+
+    //  new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 1)
+    //  .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kLowGoalSpeed));
+    //  new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 2)
+    //  .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kHighGoalSpeed));
+    //  new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 3)
+    //  .whileHeld(new ShooterOn(m_shooterSubsystem,  Constants.kBlehSpeed));
+    //  new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 0)
+    //  .whileHeld(new ShooterOff(m_shooterSubsystem));
+
 
     if (isCBot) {
       
       //Climb
-      new JoystickButton(testStick, JoystickButtonConstants.kA)
-      .whenPressed(new ClimbWithStick(testStick, m_climb));
-      new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
-      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
-      new POVButton(testStick, JoystickButtonConstants.kPOV_RIGHT)
-      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTwoInches));
-      new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
-      .whenPressed(new ClimbToPosition(m_climb, 0));
-      new JoystickButton(testStick, JoystickButtonConstants.kStart)
-      .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTest)); 
+      new JoystickButton(testStick, JoystickButtonConstants.kA) //Only needs climbWithStick and Nudge L and R
+      .whenPressed(new ClimbWithStick(testStick, m_climb));         //--------ASK ETHAN IF NUDGES ARE INVERTED-----------
       new JoystickButton(testStick, JoystickButtonConstants.kX)
       .whenPressed(new ClimbNudgeLeftDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
@@ -116,7 +120,16 @@ public class RobotContainer {
       .whenPressed(new ClimbNudgeRightDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
 
+      // new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
+      // .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
+      // new POVButton(testStick, JoystickButtonConstants.kPOV_RIGHT)
+      // .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTwoInches));
+      // new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
+      // .whenPressed(new ClimbToPosition(m_climb, 0));
+      // new JoystickButton(testStick, JoystickButtonConstants.kStart)
+      // .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTest));
 
+      //Latches
       new JoystickButton(testStick, JoystickButtonConstants.kL3)
       .whenPressed(new ServoForward(m_latchServos));
       new JoystickButton(testStick, JoystickButtonConstants.kR3)

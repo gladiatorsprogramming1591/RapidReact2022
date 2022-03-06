@@ -1,3 +1,4 @@
+//NOT USED
 package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -11,7 +12,7 @@ public class HopperAdvance extends CommandBase {
 
    public HopperAdvance(HopperSubsystem hopperSubsystem) {
       m_hopperSubsystem = hopperSubsystem;
-      // Use addRequirements() here to declare subsystem dependencies. ][\]
+      // Use addRequirements() here to declare subsystem dependencies.
       addRequirements(m_hopperSubsystem);
    }
     

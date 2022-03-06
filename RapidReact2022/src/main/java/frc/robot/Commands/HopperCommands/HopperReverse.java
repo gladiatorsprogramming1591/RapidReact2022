@@ -18,11 +18,10 @@ public class HopperReverse extends CommandBase {
    // Called when the command is initially scheduled.
    @Override
    public void initialize() {
-       m_initialPosition = m_hopperSubsystem.getHopperEncPos();
+      m_initialPosition = m_hopperSubsystem.getHopperEncPos();
       System.out.println("HopperReverse initial position " + m_initialPosition);
    }
 
-   // Called every time the scheduler runs while the command is scheduled.
    @Override
    public void execute() {
       m_hopperSubsystem.hopperReverse();

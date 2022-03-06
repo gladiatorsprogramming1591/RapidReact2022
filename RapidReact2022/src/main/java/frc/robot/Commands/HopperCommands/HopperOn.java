@@ -2,27 +2,26 @@ package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 
 public class HopperOn extends CommandBase {
 
    HopperSubsystem m_hopperSubsystem;
-   private static Timer m_timer;
+   private double m_initialPosition;
 
    public HopperOn(HopperSubsystem hopperSubsystem) {
       m_hopperSubsystem = hopperSubsystem;
-      // Use addRequirements() here to declare subsystem dependencies.
+
       addRequirements(m_hopperSubsystem);
    }
     
-   // Called when the command is initially scheduled.
    @Override
    public void initialize() {
-      System.out.println("HopperSubsystem Calling HopperReverse");
+      m_initialPosition = m_hopperSubsystem.getHopperEncPos();
+      System.out.println("HopperAdvance initial position " + m_initialPosition);
    }
 
-   // Called every time the scheduler runs while the command is scheduled.
    @Override
    public void execute() {
       m_hopperSubsystem.hopperOn();
@@ -31,12 +30,14 @@ public class HopperOn extends CommandBase {
    // Called once the command ends or is interrupted.
    public void end(boolean interrupted) {
       m_hopperSubsystem.hopperOff();
+      System.out.println("HopperAdvance end position " + m_hopperSubsystem.getHopperEncPos());
+      System.out.println("HopperAdvance change position " + (m_hopperSubsystem.getHopperEncPos()-m_initialPosition));
    }
 
    // Returns true when the command should end.
    @Override
    public boolean isFinished(){
-      return false;
+      return m_hopperSubsystem.getHopperEncPos()-m_initialPosition > Constants.kHopperAdvanceDist;
    }
    
 }
