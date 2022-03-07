@@ -33,7 +33,7 @@ public final class Constants {
     public final static double kRotationD = 0.1;
     public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
     public final static double kStaticPowerRequirement = 0.35;
-    public final static double kAutoRotationVelocityError = 150.0;
+    public final static double kAutoRotationVelocityError = 5.0;
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.4;
@@ -63,10 +63,10 @@ public final class Constants {
          //Drive train constants
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.4;  // with squared inputs, sets max speed to 16%
+    public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 25%
     public final static double kFastDriveScalar = 0.8;  // with squared inputs, sets max speed to 64%
     public final static double kPushDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
-    public final static double kSlowTurnScalar = 0.4;
+    public final static double kSlowTurnScalar = 0.6;
     public final static double kFastTurnScalar = 0.7;
     public final static double kDriveRampRate = 0.1;
     //LimeLight
@@ -91,7 +91,7 @@ public final class Constants {
     public static final double kMinRotations = 0.2;
     //Hopper
     public static final double kHopperRampRate = 0.1;
-    public static final double kHopperForwardSpeed = 0.4;
+    public static final double kHopperForwardSpeed = 0.5;
     public static final double kHopperAdvanceDist = 2;
     public static final double kHopperReverseSpeed = -0.4;
     public static final double kHopperReverseDist = -2;
