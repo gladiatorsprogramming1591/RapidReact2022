@@ -70,12 +70,12 @@ public final class Constants {
     public final static double kFastTurnScalar = 0.7;
     public final static double kDriveRampRate = 0.1;
     //LimeLight
-    public final static double kTargetHeight = -4.5;
+    public final static double kTargetHeight = -4.96;
     
     //Encoder 
     public final static int kEncoderResolution = 42;
     
-    public final static double kHighGoalSpeed = -0.7;
+    public final static double kHighGoalSpeed = -0.67;
     public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
     public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;
