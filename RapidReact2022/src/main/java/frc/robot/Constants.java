@@ -28,12 +28,12 @@ public final class Constants {
     public static final int kRightServoChannel = 9;
 
     // PIDTurnToDegrees
-    public final static double kRotationP = 0.4;
-    public final static double kRotationI = 0.09;
-    public final static double kRotationD = 0.1;
-    public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
+    public final static double kRotationP = 0.015;
+    public final static double kRotationI = 0.015;
+    public final static double kRotationD = 0;
+    public final static double kAutoRotationError = 1.0; // stop rotating if bot is x degrees away from target
     public final static double kStaticPowerRequirement = 0.35;
-    public final static double kAutoRotationVelocityError = 5.0;
+    public final static double kAutoRotationVelocityError = 10.0;
     
         // PIDDriveEncoder
     public final static double kPIDDriveRotP = 0.4;
@@ -75,7 +75,7 @@ public final class Constants {
     //Encoder 
     public final static int kEncoderResolution = 42;
     
-    public final static double kHighGoalSpeed = -0.6;
+    public final static double kHighGoalSpeed = -0.7;
     public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
     public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;

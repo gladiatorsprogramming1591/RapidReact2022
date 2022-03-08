@@ -59,10 +59,12 @@ public class PIDDriveEncoder extends CommandBase{
 
         System.out.println("PIDDriveEncoder: " + drive + " " + drivePID.getPositionError());
 
-        if (drive > 0.6){
-            drive = 0.6; 
-        } else if (drive < -0.6) {
-            drive = -0.6;
+        double MAX_SPEED = 0.5;
+
+        if (drive > MAX_SPEED){
+            drive = MAX_SPEED; 
+        } else if (drive < -MAX_SPEED) {
+            drive = -MAX_SPEED;
         }
 
         m_driveTrainC.drive(drive, 0, false);
