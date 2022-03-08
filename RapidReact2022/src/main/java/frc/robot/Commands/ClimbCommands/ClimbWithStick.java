@@ -25,7 +25,7 @@ public class ClimbWithStick extends CommandBase {
 
     @Override
     public void execute() {
-        double y = -m_stick.getY();
+        double y = m_stick.getY();
         if (y > Constants.kClimberUpwardSpeed) {
             y = Constants.kClimberUpwardSpeed;
         } else {

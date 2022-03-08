@@ -36,6 +36,7 @@ public class Climb extends SubsystemBase {
     setBrakeMode();
 
     m_RightMotor.setInverted(true);
+    m_LeftMotor.setInverted(false);
     
     m_leftEncoder = m_LeftMotor.getEncoder();
     m_rightEncoder = m_RightMotor.getEncoder();
