@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.ShooterCommands.ShooterOn;
+// import frc.robot.commands.ShooterCommands.ShooterOn;
 
 public class ShooterSubsystem extends SubsystemBase{
     CANSparkMax m_shooterMotor;
@@ -51,16 +51,15 @@ public class ShooterSubsystem extends SubsystemBase{
         }
 
 
-        public void shooterOn() {
-          //Turns on the shooter motor
-          System.out.println("Turning shooter on");
+        // public void shooterOn() {
+        //   //Turns on the shooter motor
+        //   System.out.println("Turning shooter on");
           
-            setShooterSpeed(Constants.kShooterMotorSpeedRPM);
+        //     setShooterSpeed(Constants.kShooterMotorSpeedRPM);
       
-        }
+        // }
 
       public void shooterOff() {
-        System.out.println("Turning shooter off");
         m_shooterMotor.set(0);
       }
 

@@ -90,8 +90,8 @@ public final class Constants {
     //Climb
     public static final double kClimberUpwardDist = 10; 
     public static final double kClimberDownwardDist = -10; 
-    public static final double kClimberUpwardSpeed = 0.8;
-    public static final double kClimberDownwardSpeed = -0.4;
+    public static final double kClimberUpwardSpeed = 0.8;       //Goes down in testing
+    public static final double kClimberDownwardSpeed = -0.5;    //Goes up in testing
     public static final double kClimbStopDist = 2;
     public static final double kClimbTopPos = 141.2; 
     public static final double kClimbTwoInches = 11.5; 
