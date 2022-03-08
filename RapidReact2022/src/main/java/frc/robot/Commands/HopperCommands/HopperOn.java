@@ -26,7 +26,7 @@ public class HopperOn extends CommandBase {
 
    @Override
    public void execute() {
-      m_hopperSubsystem.hopperOn();
+      m_hopperSubsystem.hopperOn(Constants.kHopperForwardSpeed);
    }
      
    // Called once the command ends or is interrupted.

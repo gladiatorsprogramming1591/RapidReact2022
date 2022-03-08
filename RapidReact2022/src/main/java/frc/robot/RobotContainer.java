@@ -17,6 +17,7 @@ import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
 // import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.HopperCommands.HopperReverse;
+import frc.robot.commands.HopperCommands.Regurgitate;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeOff;
@@ -107,6 +108,10 @@ public class RobotContainer {
     //  new MultiToggle(new JoystickButton(testStick, JoystickButtonConstants.kR2), 0)
     //  .whileHeld(new ShooterOff(m_shooterSubsystem));
 
+    //Regurgitate
+    new JoystickButton(testStick, JoystickButtonConstants.kPOV_DOWN)
+    .whenPressed(new Regurgitate(m_hopperSubsystem, m_IntakeSubsystem));
+
 
     if (isCBot) {
       
@@ -141,67 +146,3 @@ public class RobotContainer {
     return new MainAutoCommand(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
 }
-//Notes to self: figure out how to simulate motors
-
-/*
--SHOOT ONE OPTION 0 --In Progress
--REGERGITATE ALL OPTION -- LEFT POV (POSSIBLY TESTSTICK)
--FULL CHUCK OPTION
--"NUDGE" OPTION FOR INTAKE
--ORGANIZE SHUFFLEBOARD
--ADD SHOOTING MODES TO S.B. (POS BOOLEANS?)
-
-BUTTON MAPPING:
-  MANIPULATOR STICK:
-    SHOOTER
-      (for sure)
-      -R1- HIGH GOAL SPEED
-      -R2- LOW GOAL SPEED
-      (may change)
-      -L1- BLEH SPEED
-      -L2- STOP SHOOTER
-
-(Need to figure out mapping for "regergitate all" to fit along with climb buttons)
-
-RESEARCH:
--Look into Thunderclap's drive ecoder; possible copy and paste
--Look into DeepSpace's camera server group to reference for including Microsoft Camera
-
-
-
-NOTES:: -When ball is at the top of the hopper between the "stopper" and hopper belts,
-hopper does not advance (too little power?). (REMAINS AN ISSUE)
--Justin brought up that belts of intake seem to skip when  when manually turned ontop of ball,
-have not tested if the same ran by the motor.
-
-PENDING TEST:
-*/
-
-
-
-
-
-
-
-
-
-/*
-COMPLETED:
-3/3/22
--UP ON D-PAD --ADVANCE HOPPER
--DOWN D-PAD REVERSE HOPPER (JUST HOPPER)
--ALL CLIMB POSTITIONS TO TESTSTICK
--kA: ENABLE SLOW     kA:ENABLE FAST
--FIX TURNIG LEFT TOO FAST (SENSITIVE)*** --Bad Joystick
-
-3/4/22
--Program new motor controllers (CAN ID 10 AND 5)
--Intake motor controller current limit: set to 50 --set all to 50
--Programmed 2nd intake motor
--Found 25ft Ethernet Cable
--FIX SLOW MODE (and simplified) --Used .toggleWhenPressed
-
-3/5/22
--PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
--MINIMUM SPEED SHOOTER OPTION
-*/

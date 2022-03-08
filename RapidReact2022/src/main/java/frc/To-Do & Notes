@@ -1,0 +1,70 @@
+Notes to self: figure out how to simulate motors
+
+-TURN ON/OFF LEDS
+ADD SOMETHING TO ENSURE THE RIGHT ANGLE FOR CLIMB PREP
+-SHOOT ONE OPTION 0 --In Progress
+-FULL CHUCK OPTION
+-"NUDGE" OPTION FOR INTAKE
+-ORGANIZE SHUFFLEBOARD
+
+BUTTON MAPPING:
+  MANIPULATOR STICK:
+
+(Need to figure out mapping for "regergitate all" to fit along with climb buttons)
+
+RESEARCH:
+-How to get world angle (north,south,etc.)
+
+
+
+NOTES:: -When ball is at the top of the hopper between the "stopper" and hopper belts,
+hopper does not advance (too little power?). (REMAINS AN ISSUE)
+-Justin brought up that belts of intake seem to skip when  when manually turned ontop of ball,
+have not tested if the same ran by the motor.
+
+PENDING TEST:
+-REGURGITATE ONE --if failed, test what encoder position  is ONE BALL LENGTH
+
+
+
+
+
+
+
+
+POSSIBLY REDUNDANT:
+-Look into DeepSpace's camera server group to reference for including Microsoft Camera
+-Look into Thunderclap's drive ecoder; possible copy and paste
+
+COMPLETED:
+3/3/22
+-UP ON D-PAD --ADVANCE HOPPER
+-DOWN D-PAD REVERSE HOPPER (JUST HOPPER)
+-ALL CLIMB POSTITIONS TO TESTSTICK
+-kA: ENABLE SLOW     kA:ENABLE FAST
+-FIX TURNIG LEFT TOO FAST (SENSITIVE)*** --Bad Joystick
+
+3/4/22
+-Program new motor controllers (CAN ID 10 AND 5)
+-Intake motor controller current limit: set to 50 --set all to 50
+-Programmed 2nd intake motor
+-Found 25ft Ethernet Cable
+-FIX SLOW MODE (and simplified) --Used .toggleWhenPressed
+
+3/5/22
+-PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
+-MINIMUM SPEED SHOOTER OPTION
+
+3/6/22
+  MANIPULATOR STICK:
+    SHOOTER
+      (for sure)
+      -R1- HIGH GOAL SPEED
+      -R2- LOW GOAL SPEED
+      (may change)
+      -L1- BLEH SPEED
+      -L2- STOP SHOOTER
+-ADD SHOOTING MODES TO S.B. --strings
+
+3/7/22
+-"-REGERGITATE ALL OPTION -- LEFT POV (POSSIBLY TESTSTICK)" May not be needed

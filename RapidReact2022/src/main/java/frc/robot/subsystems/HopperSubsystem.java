@@ -38,12 +38,12 @@ public class HopperSubsystem extends SubsystemBase {
 
         m_hopperEncoder = m_hopperMotor.getEncoder();
     }
-    public void hopperOn() {
-        m_hopperMotor.set(Constants.kHopperForwardSpeed);
+    public void hopperOn(double speed) {
+        m_hopperMotor.set(speed);
     }
 
-    public void hopperReverse() {
-        m_hopperMotor.set(Constants.kHopperReverseSpeed);
+    public void hopperReverse(double speed) {
+        m_hopperMotor.set(speed);
     }
 
     public void hopperOff() {

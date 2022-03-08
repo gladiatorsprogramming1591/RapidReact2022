@@ -14,7 +14,7 @@ public class MainAutoCommand extends SequentialCommandGroup {
         addCommands(
             new ShootAutoLowGoal(shooter, hopper, intake)
             , new PIDDriveInches(driveTrainC, -87)
-            , new PIDTurnToDegrees(driveTrainC, -90, false)
+            // , new PIDTurnToDegrees(driveTrainC, -90, false)
         );
     }
 }

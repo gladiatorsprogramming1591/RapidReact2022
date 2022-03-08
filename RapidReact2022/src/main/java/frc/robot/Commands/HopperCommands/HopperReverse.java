@@ -24,7 +24,7 @@ public class HopperReverse extends CommandBase {
 
    @Override
    public void execute() {
-      m_hopperSubsystem.hopperReverse();
+      m_hopperSubsystem.hopperReverse(Constants.kHopperReverseSpeed);
    }
     
    // Called once the command ends or is interrupted.
