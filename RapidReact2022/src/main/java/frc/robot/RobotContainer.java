@@ -12,6 +12,7 @@ import frc.robot.commands.AutoCommands.MainAutoCommand;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
+import frc.robot.commands.HopperCommands.BallLengthTest;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
@@ -111,6 +112,9 @@ public class RobotContainer {
     //Regurgitate
     new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
     .whenPressed(new Regurgitate(m_hopperSubsystem, m_IntakeSubsystem));
+    //BallTest
+    new POVButton(testStick, JoystickButtonConstants.kPOV_LEFT)
+    .whenPressed(new BallLengthTest(testStick, m_hopperSubsystem, new JoystickButton(testStick, JoystickButtonConstants.kPOV_UP)));
 
 
     if (isCBot) {

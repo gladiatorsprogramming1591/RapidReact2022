@@ -19,7 +19,7 @@ public class BallLengthTest extends CommandBase {
         m_hopperSubsystem = hopperSubsystem;
         m_button = joystickButton;
 
-        addRequirements(m_hopperSubsystem);
+        addRequirements(m_hopperSubsystem); //doesn't get interupted
     }
 
     @Override
