@@ -109,7 +109,7 @@ public class RobotContainer {
     //  .whileHeld(new ShooterOff(m_shooterSubsystem));
 
     //Regurgitate
-    new JoystickButton(testStick, JoystickButtonConstants.kPOV_DOWN)
+    new POVButton(testStick, JoystickButtonConstants.kPOV_DOWN)
     .whenPressed(new Regurgitate(m_hopperSubsystem, m_IntakeSubsystem));
 
 

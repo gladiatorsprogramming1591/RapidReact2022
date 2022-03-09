@@ -34,7 +34,7 @@ public class Regurgitate extends CommandBase {
     
    public void end(boolean interrupted) {
       m_hopperSubsystem.hopperOff();
-      m_intakeSubsystem.intakeOn();
+      // m_intakeSubsystem.intakeOn();
       System.out.println("HopperRegurgitate end position " + m_hopperSubsystem.getHopperEncPos());
       System.out.println("HopperRegurgitate change position " + (m_hopperSubsystem.getHopperEncPos()-m_initialPosition));
    }

@@ -12,6 +12,7 @@ public class BallLengthTest extends CommandBase {
     private Joystick m_stick;
     private HopperSubsystem m_hopperSubsystem;
     private JoystickButton m_button;
+    private double initPosition;
 
     public BallLengthTest(Joystick stick, HopperSubsystem hopperSubsystem, JoystickButton joystickButton){
         m_stick = stick;
@@ -24,6 +25,7 @@ public class BallLengthTest extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("BallLengthTest init Pos " + m_hopperSubsystem.getHopperEncPos());
+        initPosition = m_hopperSubsystem.getHopperEncPos();
     }
 
     @Override
@@ -42,8 +44,17 @@ public class BallLengthTest extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("BallLengthTest end: LtEncPos: " + m_hopperSubsystem.getHopperEncPos());
-    }
+        System.out.println("BallLengthTest end: EncPos: " + m_hopperSubsystem.getHopperEncPos());
+        if (initPosition > 0){
+        System.out.println("BallLengthTest Change: EncPos: " + (initPosition-m_hopperSubsystem.getHopperEncPos()));
+        } else {
+            if (initPosition < 0) {
+                System.out.println("BallLengthTest Change: EncPos: " + (initPosition+m_hopperSubsystem.getHopperEncPos()));
+            } else {
+                System.out.println("BallLengthTest Change: None");
+                }
+            }
+        }
 
     @Override
     public boolean isFinished() {
