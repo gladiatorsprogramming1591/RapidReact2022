@@ -61,24 +61,27 @@ public abstract class DriveTrain extends SubsystemBase {
 
   public abstract void setCoastMode();
 
-    static void Limelight(){
+  public static void TurnLimelightLED_Off() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);  
+  }
 
- 
-    }
-    
-    public double calculateHorizontalError() {
+  public static void TurnLimelightLED_On() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);  
+  }
+  
+  public double calculateHorizontalError() {
 
-      tx = table.getEntry("tx");
+    tx = table.getEntry("tx");
 
-      return tx.getDouble(0.0);
-    }
+    return tx.getDouble(0.0);
+  }
 
-    public double calculateVerticalError() {
+  public double calculateVerticalError() {
 
-      ty = table.getEntry("ty");
+    ty = table.getEntry("ty");
 
-      return ty.getDouble(0.0); // - Constants.kTargetHeight;
-    }
+    return ty.getDouble(0.0); // - Constants.kTargetHeight;
+  }
 
  @Override
  public void periodic() {

@@ -29,26 +29,32 @@ public final class Constants {
 
     // PIDTurnToDegrees
     public final static double kRotationP = 0.015;
-    public final static double kRotationI = 0.015;
+    public final static double kRotationI = 0.03;
     public final static double kRotationD = 0;
     public final static double kAutoRotationError = 1.0; // stop rotating if bot is x degrees away from target
     public final static double kStaticPowerRequirement = 0.35;
     public final static double kAutoRotationVelocityError = 10.0;
     
-        // PIDDriveEncoder
-    public final static double kPIDDriveRotP = 0.4;
-    public final static double kPIDDriveRotI = 0.09;
-    public final static double kPIDDriveRotD = 0.1;
-    public final static double kPIDDriveP = 0.5; //may need to tweak
-    public final static double kPIDDriveI = 0.09;
-    public final static double kPIDDriveD = 0.1;
+    // PIDDriveEncoder
+    public final static double kVisionPIDDriveRotP = 0.3;
+    public final static double kVisionPIDDriveRotI = 0.3;
+    public final static double kVisionPIDDriveRotD = 0;
+    public final static double kVisionPIDDriveP = 1.0;
+    public final static double kVisionPIDDriveI = 0;
+    public final static double kVisionPIDDriveD = 0;
+    public final static double kPIDDriveRotP = 0.015;
+    public final static double kPIDDriveRotI = 0.03;
+    public final static double kPIDDriveRotD = 0;
+    public final static double kPIDDriveP = 0.05; // worked well at 50 inches 
+    public final static double kPIDDriveI = 0;
+    public final static double kPIDDriveD = 0;
     public final static double kPIDDrivePosTol = 1.0;
     public final static double kPIDDriveVelTol = 5.0;
     public final static double kPIDAnglePosTol = 1.0;
     public final static double kPIDAngleVelTol = 5.0;
-    public final static double kVisionPIDDrivePosTol = 0.1;
+    public final static double kVisionPIDDrivePosTol = 0.15;
     public final static double kVisionPIDDriveVelTol = 1.0;
-    public final static double kVisionPIDAnglePosTol = 0.1;
+    public final static double kVisionPIDAnglePosTol = 0.15;
     public final static double kVisionPIDAngleVelTol = 1.0;
     public final static double kCustomPower = 0.17;
     public final static double kCustomPowerMin = 0.08;
@@ -64,7 +70,7 @@ public final class Constants {
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
     public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 25%
-    public final static double kFastDriveScalar = 0.8;  // with squared inputs, sets max speed to 64%
+    public final static double kFastDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
     public final static double kPushDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
     public final static double kSlowTurnScalar = 0.6;
     public final static double kFastTurnScalar = 0.7;
@@ -114,5 +120,5 @@ public final class Constants {
     public static final double kRightServoBackwardAngle = 115.7;
     public static final double kLeftServoForwardAngle = 100;
     public static final double kLeftServoBackwardAngle = 69.3;
-    public static final double kAutoHopperDist = 6;
+    public static final double kAutoHopperDist = 1.5;
 }

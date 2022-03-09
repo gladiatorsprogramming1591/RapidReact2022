@@ -12,8 +12,8 @@ import frc.robot.Constants;
  */
 public class PIDDriveToTargetVision extends CommandBase{
     private final DriveTrainC m_driveTrainC;
-    private PIDController anglePID = new PIDController(Constants.kPIDDriveRotP, Constants.kPIDDriveRotI, Constants.kPIDDriveRotD);
-    private PIDController drivePID = new PIDController(Constants.kPIDDriveP, Constants.kPIDDriveI, Constants.kPIDDriveD);
+    private PIDController anglePID = new PIDController(Constants.kVisionPIDDriveRotP, Constants.kVisionPIDDriveRotI, Constants.kVisionPIDDriveRotD);
+    private PIDController drivePID = new PIDController(Constants.kVisionPIDDriveP, Constants.kVisionPIDDriveI, Constants.kVisionPIDDriveD);
     private double m_angleSetpoint = 0;
     private double m_driveSetpoint = Constants.kTargetHeight;
     private int invalidTargetLoopCount = 0; 
@@ -47,11 +47,13 @@ public class PIDDriveToTargetVision extends CommandBase{
         
             double rot = anglePID.calculate(-m_driveTrainC.calculateHorizontalError()/10, m_angleSetpoint);
             SmartDashboard.putNumber("PIDDriveToTarget Rotations: ", rot);
-            System.out.println("Rot: " + rot + "  RotPosErr: " + m_driveTrainC.calculateHorizontalError()/10);
+            System.out.print("Rot: " + rot + "  RotPosErr: " + m_driveTrainC.calculateHorizontalError()/10);
+            System.out.print("RotVelErr: " + anglePID.getVelocityError());
             double drive = drivePID.calculate(m_driveTrainC.calculateVerticalError()/10, m_driveSetpoint/10);
             SmartDashboard.putNumber("PIDDriveToTarget Drive: ", drive);
 
-            System.out.println("Drive: " + drive + "  DrivePosErr: " + (m_driveSetpoint/10.0 - m_driveTrainC.calculateVerticalError()/10));
+            System.out.print("  Drive: " + drive + "  DrivePosErr: " + (m_driveSetpoint/10.0 - m_driveTrainC.calculateVerticalError()/10));
+            System.out.print("DriveVelErr: " + drivePID.getVelocityError());
 
             if (rot > 0.5){
                 rot = 0.5; 

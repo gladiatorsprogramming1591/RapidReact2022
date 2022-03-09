@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommands.PickupShootLowGoal;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -39,6 +41,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    DriveTrainC.TurnLimelightLED_Off();
   }
 
   /**
@@ -72,6 +75,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    System.out.println("Turning on limelight in autonomous");
+    DriveTrain.TurnLimelightLED_On();
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
@@ -101,6 +106,9 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    System.out.println("Turning on limelight in teleop");
+    DriveTrain.TurnLimelightLED_On();
+
     // Turn off shooter to start teleop
     m_robotContainer.m_shooterSubsystem.shooterOff();
     // Turn off intake for now to conserve power, TODO remove this for competition
@@ -114,7 +122,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    System.out.println("Turning off limelight because we are disabled");
+    DriveTrain.TurnLimelightLED_Off();
+  }
 
   /** This function is called periodically when disabled. */
   @Override
