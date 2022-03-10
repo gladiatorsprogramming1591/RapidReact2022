@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.AutoCommands.PickupShootLowGoal;
+import frc.robot.commands.AutoCommands.WallAuto;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
 
