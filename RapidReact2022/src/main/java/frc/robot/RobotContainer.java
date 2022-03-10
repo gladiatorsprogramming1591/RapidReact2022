@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.AutoCommands.PickupShootHighGoal;
-import frc.robot.commands.AutoCommands.PickupShootLowGoal;
+import frc.robot.commands.AutoCommands.WallAuto;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
@@ -144,8 +144,13 @@ public class RobotContainer {
   }
 
   public Command getCustomAutonomousCommand() {
-    return new PickupShootLowGoal(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
-  }}
+    return new WallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+  }
+
+  public Command getWallAutonomousCommand() {
+    return new WallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+  }
+}
 //Notes to self: figure out how to simulate motors
 
 /*
