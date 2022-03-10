@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ShooterHighGoal extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ShooterSubsystem m_subsystem;
+
   /**
    * Creates a new ExampleCommand.
    *
@@ -18,6 +19,7 @@ public class ShooterHighGoal extends CommandBase {
    */
   public ShooterHighGoal(ShooterSubsystem shooterSubsystem) {
     m_subsystem = shooterSubsystem;
+    // shooterPID.setTolerance(C````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````onstants.kPIDShooterPosTol, Constants.kPIDShooterVelTol);
 
     addRequirements(shooterSubsystem);
   }

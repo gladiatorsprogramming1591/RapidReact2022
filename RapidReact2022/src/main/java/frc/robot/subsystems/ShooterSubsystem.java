@@ -24,6 +24,11 @@ public class ShooterSubsystem extends SubsystemBase{
       }
       m_shooterMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
 
+      m_shooterMotor.getPIDController().setP(Constants.kShooterP);
+      m_shooterMotor.getPIDController().setI(Constants.kShooterI);
+      m_shooterMotor.getPIDController().setD(Constants.kShooterD);
+      m_shooterMotor.getPIDController().setFF(Constants.kShooterFF);
+
       m_shooterMotor.enableVoltageCompensation(12);
 
       // setDefaultCommand(new ShooterOn(this));
@@ -35,8 +40,9 @@ public class ShooterSubsystem extends SubsystemBase{
       }
 
       public void setShooterSpeed(double speed) {
-        m_shooterMotor.set(speed);
-        
+        // m_targetVelocity = speed * -3120/Constants.kHighGoalSpeed; // -3120 is measured velocity at HighGoalSpeed
+        // m_shooterMotor.getPIDController().setReference(m_targetVelocity, ControlType.kVelocity);
+        m_shooterMotor.set(speed);  // Used for voltage, not velocity
       }
     
       public boolean isShooterAtSpeed() {

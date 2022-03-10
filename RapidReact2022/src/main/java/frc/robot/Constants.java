@@ -81,6 +81,7 @@ public final class Constants {
     //Encoder 
     public final static int kEncoderResolution = 42;
     
+    //Shooter
     public final static double kHighGoalSpeed = -0.67;
     public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
     public final static double kBlehSpeed = -0.2;
@@ -90,6 +91,13 @@ public final class Constants {
     public static final PneumaticsModuleType kPCM_CANID = null;
     public static final int kArmSolenoidForwardChannel = 0; //tbd
     public static final int kArmSolenoidReverseChannel = 1; //tbd
+    public static final double kPIDShooterPosTol = 0.2;
+    public static final double kPIDShooterVelTol = 1;
+    public static final double kShooterP = 0.0075;
+    public static final double kShooterI = 0.0;
+    public static final double kShooterD = 2.0;
+    public static final double kShooterFF = 0.0019;
+
     //Intake
     public static final double kIntakeForwardSpeed = 0.5;
     public static final double kIntakeReverseSpeed = -0.4;

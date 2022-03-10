@@ -33,7 +33,14 @@ public class ClimbWithStick extends CommandBase {
                 y = Constants.kClimberDownwardSpeed;
             }
         }
-        m_climb.setClimbSpeed(y);
+        final double MAX_HEIGHT = 100;
+        if (y > 0 && 
+                (m_climb.getLeftEncPos() + m_climb.getZeroPos() > MAX_HEIGHT || 
+                 m_climb.getRightEncPos() + m_climb.getZeroPos() > MAX_HEIGHT)) {
+            m_climb.setClimbSpeed(0);
+        } else {
+            m_climb.setClimbSpeed(y);
+        }
     }
 
     @Override

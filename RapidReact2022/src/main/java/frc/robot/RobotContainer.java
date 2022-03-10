@@ -119,6 +119,8 @@ public class RobotContainer {
       new JoystickButton(testStick, JoystickButtonConstants.kB)
       .whenPressed(new ClimbNudgeRightDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
+      new JoystickButton(testStick, JoystickButtonConstants.kY)
+      .whenPressed(new ZeroClimbPosition(m_climb));
 
       // new POVButton(testStick, JoystickButtonConstants.kPOV_UP)
       // .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTopPos));
