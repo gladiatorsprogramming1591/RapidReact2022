@@ -98,9 +98,9 @@ public final class Constants {
     //Hopper
     public static final double kHopperRampRate = 0.1;
     public static final double kHopperForwardSpeed = 0.5;
-    public static final double kHopperAdvanceDist = 2;
+    public static final double kHopperAdvanceDist = 1.5;
     public static final double kHopperReverseSpeed = -0.4;
-    public static final double kHopperReverseDist = -2;
+    public static final double kHopperReverseDist = -1.5;
 
 
     //Climb
@@ -120,5 +120,7 @@ public final class Constants {
     public static final double kRightServoBackwardAngle = 115.7;
     public static final double kLeftServoForwardAngle = 100;
     public static final double kLeftServoBackwardAngle = 69.3;
+ 
+    //Auto
     public static final double kAutoHopperDist = 1.5;
 }

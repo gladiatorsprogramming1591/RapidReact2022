@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
     // Turn off shooter to start teleop
     m_robotContainer.m_shooterSubsystem.shooterOff();
     // Turn off intake for now to conserve power, TODO remove this for competition
-    m_robotContainer.m_IntakeSubsystem.intakeOff();
+    // m_robotContainer.m_IntakeSubsystem.intakeOff();
   }
 
   /** This function is called periodically during operator control. */
