@@ -137,10 +137,13 @@ public class RobotContainer {
     }
   }
 
-  public Command getAutonomousCommand() {
+  public Command getDefaultAutonomousCommand() {
     return new PickupShootHighGoal(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
-}
+
+  public Command getCustomAutonomousCommand() {
+    return new PickupShootLowGoal(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+  }}
 //Notes to self: figure out how to simulate motors
 
 /*

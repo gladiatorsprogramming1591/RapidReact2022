@@ -14,7 +14,7 @@ public class ShootAutoHighGoal extends SequentialCommandGroup{
 
     public ShootAutoHighGoal(ShooterSubsystem shooter, HopperSubsystem hopper, IntakeSubsystem intake) {
         addCommands(
-            // new IntakeOn(intake),
+            // new IntakeOn(intake), // done in higher level command
             new HopperOn(hopper, Constants.kAutoHopperDist),
             new ShooterHighGoal(shooter).withTimeout(1.0),
             new HopperOn(hopper, Constants.kAutoHopperDist)

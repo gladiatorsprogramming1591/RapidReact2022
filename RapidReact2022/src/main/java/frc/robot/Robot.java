@@ -20,8 +20,8 @@ import frc.robot.subsystems.DriveTrainC;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+  private static final String kDefaultAuto = "HighGoal";
+  private static final String kCustomAuto = "LowGoal";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private RobotContainer m_robotContainer;
@@ -33,8 +33,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
+    m_chooser.setDefaultOption("HighGoal", kDefaultAuto);
+    m_chooser.addOption("LowGoal", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -80,13 +80,23 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    Command autonomousCommand = m_robotContainer.getAutonomousCommand();
+    Command autonomousCommand = m_robotContainer.getDefaultAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (autonomousCommand != null) {
-      autonomousCommand.schedule();
+    switch (m_autoSelected) {
+      case kCustomAuto:
+        autonomousCommand = m_robotContainer.getCustomAutonomousCommand();
+        break;
+      case kDefaultAuto:
+      default:
+        // Put default auto code here
+        break;
     }
-
+    
+      // schedule the autonomous command 
+      if (autonomousCommand != null) {
+        autonomousCommand.schedule();
+      }
+  
   }
 
   /** This function is called periodically during autonomous. */
