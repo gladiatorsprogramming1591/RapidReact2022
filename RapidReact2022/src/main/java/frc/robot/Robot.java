@@ -21,7 +21,7 @@ import frc.robot.subsystems.DriveTrainC;
  */
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "HighGoal";
-  private static final String kCustomAuto = "LowGoal";
+  private static final String kLowGoalAuto = "LowGoal";
   private static final String kWall = "Wall";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
@@ -35,8 +35,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("HighGoal", kDefaultAuto);
-    m_chooser.addOption("LowGoal", kCustomAuto);
-    // m_chooser.addOption("Wall", kWall);
+    m_chooser.addOption("LowGoal", kLowGoalAuto);
+    m_chooser.addOption("Wall", kWall);
     SmartDashboard.putData("Auto choices", m_chooser);
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -82,14 +82,14 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    Command autonomousCommand = m_robotContainer.getDefaultAutonomousCommand();
+    Command autonomousCommand = m_robotContainer.getHighGoalAutonomousCommand();
 
     switch (m_autoSelected) {
-      case kCustomAuto:
-        autonomousCommand = m_robotContainer.getCustomAutonomousCommand();
+      case kLowGoalAuto:
+        autonomousCommand = m_robotContainer.getLowGoalAutonomousCommand();
         break;
       case kWall:
-        // autonomousCommand = m_robotContainer.
+        autonomousCommand = m_robotContainer.getWallAutonomousCommand();
       case kDefaultAuto:
       default:
         // Put default auto code here
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
-      case kCustomAuto:
+      case kLowGoalAuto:
         // Put custom auto code here
         break;
       case kDefaultAuto:
