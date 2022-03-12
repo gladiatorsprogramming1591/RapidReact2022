@@ -23,6 +23,8 @@ public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "HighGoal";
   private static final String kLowGoalAuto = "LowGoal";
   private static final String kWall = "Wall";
+  private static final String kOneBallAuto = "OneBall";
+  private static final String kSpitBallAuto = "SpitBall";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private RobotContainer m_robotContainer;
@@ -37,6 +39,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("HighGoal", kDefaultAuto);
     m_chooser.addOption("LowGoal", kLowGoalAuto);
     m_chooser.addOption("Wall", kWall);
+    m_chooser.addOption("OneBall", kOneBallAuto);
+    m_chooser.addOption("Spit", kSpitBallAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -82,7 +86,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    Command autonomousCommand = m_robotContainer.getHighGoalAutonomousCommand();
+    Command autonomousCommand = m_robotContainer.getHighGoalAutonomousCommand();   //getOneBallAutoCommand();
 
     switch (m_autoSelected) {
       case kLowGoalAuto:
@@ -90,6 +94,14 @@ public class Robot extends TimedRobot {
         break;
       case kWall:
         autonomousCommand = m_robotContainer.getWallAutonomousCommand();
+        break;
+      case kOneBallAuto:
+        autonomousCommand = m_robotContainer.getOneBallAutoCommand();
+        break;
+
+      case kSpitBallAuto:
+        autonomousCommand = m_robotContainer.getSpitBallAutoCommand();
+        break;
       case kDefaultAuto:
       default:
         // Put default auto code here

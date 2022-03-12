@@ -22,6 +22,7 @@ public class PickupShootLowGoal extends SequentialCommandGroup {
             new PIDTurnToDegrees(driveTrainC, 180, false),
             new ShooterLowGoal(shooter).withTimeout(0.8), // turn on shooter, allow drivetrain to stop
             new PIDDriveInches(driveTrainC, 80),  // Guess at forward distance
+            new ShooterLowGoal(shooter).withTimeout(0.5),
             new ShootAutoLowGoal(shooter, hopper, intake),
             new ShooterHighGoal(shooter).withTimeout(1.0), // Allow balls to exit shooter
             new PIDDriveInches(driveTrainC, -50),

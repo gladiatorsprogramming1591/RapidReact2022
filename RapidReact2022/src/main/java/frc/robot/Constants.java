@@ -66,15 +66,23 @@ public final class Constants {
      public final static double kWheelCircumferenceCM = kWheelDiameterCM * Math.PI; // derived from above
      public final static double kDriveGearRatio = 11.1; // measured as 11.34851783, 10.5 on first day
 
-         //Drive train constants
+    //Drive train constants
+    public final static double kDriveRampRate = 0.1;
+        //Fast
     public final static boolean kFastSquaredInputs = true;
+    public final static double kFastDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
+    public final static double kFastTurnScalar = 0.7;
+        //Slow
     public final static boolean kSlowSquaredInputs = true;
     public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 25%
-    public final static double kFastDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
-    public final static double kPushDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
     public final static double kSlowTurnScalar = 0.6;
-    public final static double kFastTurnScalar = 0.7;
-    public final static double kDriveRampRate = 0.1;
+        //Push
+    public final static boolean kPushSquaredInputs = true;
+    public final static double kPushDriveScalar = 1.0;  // with squared inputs, sets max speed to 100%
+    public final static double kPushTurnScalar = 0.7;
+
+
+
     //LimeLight
     public final static double kTargetHeight = -4.96;
     
@@ -82,7 +90,7 @@ public final class Constants {
     public final static int kEncoderResolution = 42;
     
     //Shooter
-    public final static double kHighGoalSpeed = -0.67;
+    public final static double kHighGoalSpeed = -0.66;  //Was 66
     public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
     public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;
@@ -93,10 +101,10 @@ public final class Constants {
     public static final int kArmSolenoidReverseChannel = 1; //tbd
     public static final double kPIDShooterPosTol = 0.2;
     public static final double kPIDShooterVelTol = 1;
-    public static final double kShooterP = 0.0075;
+    public static final double kShooterP = 0.00075;
     public static final double kShooterI = 0.0;
-    public static final double kShooterD = 2.0;
-    public static final double kShooterFF = 0.0019;
+    public static final double kShooterD = 0.02;
+    public static final double kShooterFF = 0.00019;
 
     //Intake
     public static final double kIntakeForwardSpeed = 0.5;
@@ -105,7 +113,7 @@ public final class Constants {
     public static final double kMinRotations = 0.2;
     //Hopper
     public static final double kHopperRampRate = 0.1;
-    public static final double kHopperForwardSpeed = 0.5;
+    public static final double kHopperForwardSpeed = 0.65;  // orig = 0.5
     public static final double kHopperAdvanceDist = 1.5;
     public static final double kHopperReverseSpeed = -0.4;
     public static final double kHopperReverseDist = -1.5;
@@ -131,4 +139,5 @@ public final class Constants {
  
     //Auto
     public static final double kAutoHopperDist = 1.5;
+    public static final double kAutoHopperDist2ndBall = 6.0;
 }

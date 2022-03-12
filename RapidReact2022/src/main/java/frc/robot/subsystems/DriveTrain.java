@@ -114,7 +114,12 @@ public abstract class DriveTrain extends SubsystemBase {
  public void setFastDrive() {
    m_AxisForward = getAxisForward() * Constants.kFastDriveScalar;
    m_AxisTurning = getAxisTurning() * Constants.kFastDriveScalar; 
- } 
+ }
+
+ public void setPushDrive() {
+  m_AxisForward = getAxisForward() * Constants.kPushDriveScalar;
+  m_AxisTurning = getAxisTurning() * Constants.kPushDriveScalar; 
+}
 
  public boolean validTarget(){
    if (v == 0.0) {

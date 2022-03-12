@@ -9,10 +9,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.AutoCommands.PickupShootHighGoal;
-import frc.robot.commands.AutoCommands.PickupShootLowGoal;
+import frc.robot.commands.AutoCommands.ShootOneBallAuto;
+import frc.robot.commands.AutoCommands.ShootAutoLowGoal;
 import frc.robot.commands.AutoCommands.WallAuto;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
+import frc.robot.commands.DriveTrainCommands.PushDrive;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.commands.HopperCommands.HopperAdvance;
 import frc.robot.commands.HopperCommands.HopperOff;
@@ -62,6 +64,8 @@ public class RobotContainer {
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .toggleWhenPressed(new SlowDrive(m_driveTrain, m_driverStick));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR3)
+      .toggleWhenPressed(new PushDrive(m_driveTrain));
       
 
       //Intake
@@ -133,10 +137,10 @@ public class RobotContainer {
       // .whenPressed(new ClimbToPosition(m_climb, Constants.kClimbTest));
 
       //Latches
-      new JoystickButton(testStick, JoystickButtonConstants.kL3)
-      .whenPressed(new ServoForward(m_latchServos));
-      new JoystickButton(testStick, JoystickButtonConstants.kR3)
-      .whenPressed(new ServoBackward(m_latchServos));
+      // new JoystickButton(testStick, JoystickButtonConstants.kL3)
+      // .whenPressed(new ServoForward(m_latchServos));
+      // new JoystickButton(testStick, JoystickButtonConstants.kR3)
+      // .whenPressed(new ServoBackward(m_latchServos));
     }
   }
 
@@ -145,11 +149,15 @@ public class RobotContainer {
   }
 
   public Command getLowGoalAutonomousCommand() {
-    return new PickupShootLowGoal(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+    return new ShootOneBallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
 
   public Command getWallAutonomousCommand() {
     return new WallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+  }
+
+  public Command getOneBallAutoCommand() {
+    return new ShootOneBallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
 }
 //Notes to self: figure out how to simulate motors

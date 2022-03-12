@@ -21,7 +21,9 @@ public class PickupShootHighGoal extends SequentialCommandGroup {
             new ShooterHighGoal(shooter).withTimeout(0.1), 
             new PIDDriveInches(driveTrainC, 93),
             new PIDTurnToDegrees(driveTrainC, 180, false), //-170 if right tarmac, 180 if left
-            // new PIDDriveToTargetVision(driveTrainC),
+            new ShooterHighGoal(shooter).withTimeout(1.0),
+            new PIDDriveToTargetVision(driveTrainC),
+            new ShooterHighGoal(shooter).withTimeout(1.0),
             new ShootAutoHighGoal(shooter, hopper, intake)
         );
     }
