@@ -11,6 +11,7 @@ import frc.robot.commands.XButtonTest;
 import frc.robot.commands.AutoCommands.PickupShootHighGoal;
 import frc.robot.commands.AutoCommands.ShootOneBallAuto;
 import frc.robot.commands.AutoCommands.ShootAutoLowGoal;
+import frc.robot.commands.AutoCommands.ShootAutoSpit;
 import frc.robot.commands.AutoCommands.WallAuto;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
@@ -151,6 +152,7 @@ public class RobotContainer {
   public Command getLowGoalAutonomousCommand() {
     return new ShootOneBallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
   }
+  //Why equal to OneBall if Low Goal??????????????????????????????????????????????????????????????????????
 
   public Command getWallAutonomousCommand() {
     return new WallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
@@ -158,6 +160,10 @@ public class RobotContainer {
 
   public Command getOneBallAutoCommand() {
     return new ShootOneBallAuto(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
+  }
+  
+  public Command getSpitBallAutoCommand() {
+    return new ShootAutoSpit(m_shooterSubsystem, m_hopperSubsystem, m_IntakeSubsystem);
   }
 }
 //Notes to self: figure out how to simulate motors
