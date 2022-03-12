@@ -8,9 +8,11 @@ public class HopperReverse extends CommandBase {
 
    HopperSubsystem m_hopperSubsystem;
    private double m_initialPosition;
+   private double m_distance;
 
- 	public HopperReverse(HopperSubsystem hopperSubsystem) {
+ 	public HopperReverse(HopperSubsystem hopperSubsystem, double distance) {
       m_hopperSubsystem = hopperSubsystem;
+      m_distance = distance;
       // Use addRequirements() here to declare subsystem dependencies.
       addRequirements(m_hopperSubsystem);
    }
@@ -37,7 +39,7 @@ public class HopperReverse extends CommandBase {
    // Returns true when the command should end.
    @Override
    public boolean isFinished(){
-      return m_hopperSubsystem.getHopperEncPos()-m_initialPosition < Constants.kHopperReverseDist;
+      return m_hopperSubsystem.getHopperEncPos()-m_initialPosition < m_distance;
    }
 
 }

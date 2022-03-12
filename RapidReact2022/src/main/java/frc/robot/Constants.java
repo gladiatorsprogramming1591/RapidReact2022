@@ -117,6 +117,7 @@ public final class Constants {
     public static final double kHopperAdvanceDist = 1.5;
     public static final double kHopperReverseSpeed = -0.4;
     public static final double kHopperReverseDist = -1.5;
+    public static final double kHopperReverseNudgeDist = 0.5;
 
 
     //Climb

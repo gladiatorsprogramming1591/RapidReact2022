@@ -19,7 +19,7 @@ public class ShootAutoHighGoal extends SequentialCommandGroup{
             // new IntakeOn(intake), // done in higher level command
             new AutoHopperOn(hopper, Constants.kAutoHopperDist),
             new ShooterHighGoal(shooter).withTimeout(2.0),
-            new HopperReverse(hopper),
+            new HopperReverse(hopper, Constants.kHopperReverseDist),
             new AutoHopperOn(hopper, Constants.kAutoHopperDist2ndBall)
             );
     }
