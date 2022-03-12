@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.PIDDriveToTargetVision;
 import frc.robot.commands.DriveTrainCommands.PIDDrive.PIDDriveInches;
 import frc.robot.commands.DriveTrainCommands.PIDDrive.PIDTurnToDegrees;
+import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.ShooterCommands.ShooterHighGoal;
 import frc.robot.commands.ShooterCommands.ShooterOn;

@@ -20,7 +20,7 @@ import frc.robot.subsystems.DriveTrainC;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "HighGoal";
+  private static final String kHighGoal = "HighGoal";
   private static final String kLowGoalAuto = "LowGoal";
   private static final String kWall = "Wall";
   private static final String kOneBallAuto = "OneBall";
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("HighGoal", kDefaultAuto);
+    m_chooser.setDefaultOption("HighGoal", kHighGoal);
     m_chooser.addOption("LowGoal", kLowGoalAuto);
     m_chooser.addOption("Wall", kWall);
     m_chooser.addOption("OneBall", kOneBallAuto);
@@ -102,9 +102,14 @@ public class Robot extends TimedRobot {
       case kSpitBallAuto:
         autonomousCommand = m_robotContainer.getSpitBallAutoCommand();
         break;
-      case kDefaultAuto:
+
+      case kHighGoal:
+        autonomousCommand = m_robotContainer.getHighGoalAutonomousCommand();
+        break;
+
       default:
         // Put default auto code here
+        autonomousCommand = m_robotContainer.getHighGoalAutonomousCommand();
         break;
     }
     
@@ -122,7 +127,7 @@ public class Robot extends TimedRobot {
       case kLowGoalAuto:
         // Put custom auto code here
         break;
-      case kDefaultAuto:
+      case kHighGoal:
       default:
         // Put default auto code here
         break;
