@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 
-public class HopperOn extends CommandBase {
+public class AutoHopperOn extends CommandBase {
 
    HopperSubsystem m_hopperSubsystem;
    private double m_initialPosition;
    private double m_distance;
 
-   public HopperOn(HopperSubsystem hopperSubsystem, double distance) {
+   public AutoHopperOn(HopperSubsystem hopperSubsystem, double distance) {
       m_hopperSubsystem = hopperSubsystem;
       m_distance = distance;
 
@@ -26,7 +26,7 @@ public class HopperOn extends CommandBase {
 
    @Override
    public void execute() {
-      m_hopperSubsystem.hopperOn(Constants.kHopperForwardSpeed);
+      m_hopperSubsystem.hopperOn(Constants.kAutoHopperForwardSpeed);
    }
      
    // Called once the command ends or is interrupted.

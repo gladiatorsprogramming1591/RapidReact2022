@@ -2,7 +2,7 @@
 package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 
 public class HopperAdvance extends CommandBase {
@@ -21,7 +21,7 @@ public class HopperAdvance extends CommandBase {
    public void initialize() {
       m_initialPosition = m_hopperSubsystem.getHopperEncPos();
       System.out.println("HopperAdvance initial position " + m_initialPosition);
-      m_hopperSubsystem.hopperOn();
+      m_hopperSubsystem.hopperOn(Constants.kHopperForwardSpeed);
    }
 
    // Called every time the scheduler runs while the command is scheduled.

@@ -140,4 +140,5 @@ public final class Constants {
     //Auto
     public static final double kAutoHopperDist = 1.5;
     public static final double kAutoHopperDist2ndBall = 6.0;
+    public static final double kAutoHopperForwardSpeed = 0.65;
 }

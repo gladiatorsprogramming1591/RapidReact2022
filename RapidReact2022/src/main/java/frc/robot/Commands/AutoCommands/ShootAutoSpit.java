@@ -2,6 +2,7 @@ package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.commands.HopperCommands.AutoHopperOn;
 import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.ShooterCommands.ShooterHighGoal;
@@ -17,9 +18,9 @@ public class ShootAutoSpit extends SequentialCommandGroup{
         addCommands(
             // new IntakeOn(intake), // done in higher level command
             new ShooterSpit(shooter).withTimeout(1.7), 
-            new HopperOn(hopper, Constants.kAutoHopperDist),
+            new AutoHopperOn(hopper, Constants.kAutoHopperDist),
             new ShooterSpit(shooter).withTimeout(2.0),
-            new HopperOn(hopper, Constants.kAutoHopperDist2ndBall)
+            new AutoHopperOn(hopper, Constants.kAutoHopperDist2ndBall)
             );
     }
 }
