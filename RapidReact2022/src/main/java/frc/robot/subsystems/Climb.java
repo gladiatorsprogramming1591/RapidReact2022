@@ -26,6 +26,10 @@ public class Climb extends SubsystemBase {
           m_LeftMotor = new CANSparkMax(Constants.kLeftClimberChannel, MotorType.kBrushless),
           m_RightMotor = new CANSparkMax(Constants.kRightClimberChannel, MotorType.kBrushless)
         );
+      // m_LeftMotor = new CANSparkMax(Constants.kLeftClimberChannel, MotorType.kBrushless);
+      // m_RightMotor = new CANSparkMax(Constants.kRightClimberChannel, MotorType.kBrushless);
+
+      // m_RightMotor.follow(m_LeftMotor);
 
 
     // Don't use open loop ramp rate with PID
@@ -91,6 +95,7 @@ public class Climb extends SubsystemBase {
 
   public void setClimbSpeed(double speed) {
     m_MCG.set(speed);
+    // m_LeftMotor.set(speed);
   }
 
   public void setLeftClimbSpeed(double speed){
