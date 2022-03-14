@@ -7,6 +7,7 @@ public final class Constants {
     // Controller Ports
     public final static int kDriverControllerPort = 0;
     public final static int kManipulatorControllerPort = 1;
+    public final static int kXboxControllerPort = 2;
 
     // CAN channels
     public final static int kMotorChannel = 0;    //Not used, for initial testing

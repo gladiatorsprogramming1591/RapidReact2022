@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.XButtonTest;
 import frc.robot.commands.AutoCommands.PickupShootHighGoal;
@@ -40,11 +41,13 @@ import frc.robot.commands.ClimbCommands.*;
 
 public class RobotContainer {
   public final static boolean isCBot = true;
+  public final static boolean XboxController = false;
   public final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   public final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   public final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
   public Joystick testStick = new Joystick(Constants.kManipulatorControllerPort);
   public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
+  public final static Joystick m_XboxDriverStick = new Joystick(Constants.kXboxControllerPort);
   public final DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
   public static Climb m_climb;
   public static LatchServos m_latchServos;
@@ -118,7 +121,7 @@ public class RobotContainer {
       
       //Climb
       new JoystickButton(testStick, JoystickButtonConstants.kA) //Only needs climbWithStick and Nudge L and R
-      .whenPressed(new ClimbWithStick(testStick, m_climb));         //--------ASK ETHAN IF NUDGES ARE INVERTED-----------
+      .whenPressed(new ClimbWithStick(testStick, m_climb));
       new JoystickButton(testStick, JoystickButtonConstants.kX)
       .whenPressed(new ClimbNudgeLeftDown(m_climb)
       .withTimeout(Constants.kNudgeTime));
@@ -143,7 +146,41 @@ public class RobotContainer {
       // new JoystickButton(testStick, JoystickButtonConstants.kR3)
       // .whenPressed(new ServoBackward(m_latchServos));
     }
+
+
+
+    // if (XboxController) {
+    //   new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kL3)
+    //   .toggleWhenPressed(new SlowDrive(m_driveTrain, m_XboxDriverStick));
+    // new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kR3)
+    //   .toggleWhenPressed(new PushDrive(m_driveTrain));
+
+    //   new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kL2) //Trigger
+    //   .whenPressed((Command) new IntakeOn(m_IntakeSubsystem)); 
+    //   new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kL1)
+    //   .whenPressed((Command) new IntakeReverse(m_IntakeSubsystem));
+    //   new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kShare)  
+    //   .whenPressed((Command) new IntakeOff(m_IntakeSubsystem));
+
+    //   new JoystickButton(m_XboxDriverStick, XboxButtonConstants.kY)
+    //   .whenPressed(new PIDDriveToTargetVision(m_driveTrain)); 
+
+    //   new POVButton(m_XboxDriverStick, XboxButtonConstants.kPOV_UP) ____________________//Not finished
+    //   .whenPressed(new HopperOn(m_hopperSubsystem, Constants.kHopperAdvanceDist));
+    //   new POVButton(m_XboxDriverStick, XboxButtonConstants.kPOV_LEFT)
+    //   .whenPressed(new HopperOff(m_hopperSubsystem));
+    //   new POVButton(m_XboxDriverStick, XboxButtonConstants.kPOV_DOWN)
+    //   .whenPressed(new HopperReverse(m_hopperSubsystem, Constants.kHopperReverseDist));
+    // }
   }
+
+
+
+
+
+
+
+
 
   public Command getHighGoalAutonomousCommand() {
     return new PickupShootHighGoal(m_shooterSubsystem, m_hopperSubsystem, m_driveTrain, m_IntakeSubsystem);
@@ -166,67 +203,3 @@ public class RobotContainer {
     return new ShootAutoSpit(m_shooterSubsystem, m_hopperSubsystem, m_IntakeSubsystem);
   }
 }
-//Notes to self: figure out how to simulate motors
-
-/*
--SHOOT ONE OPTION 0 --In Progress
--REGERGITATE ALL OPTION -- LEFT POV (POSSIBLY TESTSTICK)
--FULL CHUCK OPTION
--"NUDGE" OPTION FOR INTAKE
--ORGANIZE SHUFFLEBOARD
--ADD SHOOTING MODES TO S.B. (POS BOOLEANS?)
-
-BUTTON MAPPING:
-  MANIPULATOR STICK:
-    SHOOTER
-      (for sure)
-      -R1- HIGH GOAL SPEED
-      -R2- LOW GOAL SPEED
-      (may change)
-      -L1- BLEH SPEED
-      -L2- STOP SHOOTER
-
-(Need to figure out mapping for "regergitate all" to fit along with climb buttons)
-
-RESEARCH:
--Look into Thunderclap's drive ecoder; possible copy and paste
--Look into DeepSpace's camera server group to reference for including Microsoft Camera
-
-
-
-NOTES:: -When ball is at the top of the hopper between the "stopper" and hopper belts,
-hopper does not advance (too little power?). (REMAINS AN ISSUE)
--Justin brought up that belts of intake seem to skip when  when manually turned ontop of ball,
-have not tested if the same ran by the motor.
-
-PENDING TEST:
-*/
-
-
-
-
-
-
-
-
-
-/*
-COMPLETED:
-3/3/22
--UP ON D-PAD --ADVANCE HOPPER
--DOWN D-PAD REVERSE HOPPER (JUST HOPPER)
--ALL CLIMB POSTITIONS TO TESTSTICK
--kA: ENABLE SLOW     kA:ENABLE FAST
--FIX TURNIG LEFT TOO FAST (SENSITIVE)*** --Bad Joystick
-
-3/4/22
--Program new motor controllers (CAN ID 10 AND 5)
--Intake motor controller current limit: set to 50 --set all to 50
--Programmed 2nd intake motor
--Found 25ft Ethernet Cable
--FIX SLOW MODE (and simplified) --Used .toggleWhenPressed
-
-3/5/22
--PROGRAM SERVOS CONTROLLING CLIMB HOOKS: PWM 9 LEFT, PWM 8 RIGHT
--MINIMUM SPEED SHOOTER OPTION
-*/
