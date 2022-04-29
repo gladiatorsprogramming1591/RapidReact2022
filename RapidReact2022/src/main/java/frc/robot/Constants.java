@@ -71,16 +71,16 @@ public final class Constants {
     public final static double kDriveRampRate = 0.1;
         //Fast
     public final static boolean kFastSquaredInputs = true;
-    public final static double kFastDriveScalar = 0.9;  // with squared inputs, sets max speed to 81%
-    public final static double kFastTurnScalar = 0.7;
+    public final static double kFastDriveScalar = 0.3;  // with squared inputs, sets max speed to 9% (Orig: 81%)
+    public final static double kFastTurnScalar = 0.2;
         //Slow
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 25%
-    public final static double kSlowTurnScalar = 0.6;
+    public final static double kSlowDriveScalar = 0.2;  // with squared inputs, sets max speed to 4% (Orig: 25%)
+    public final static double kSlowTurnScalar = 0.2;
         //Push
     public final static boolean kPushSquaredInputs = true;
-    public final static double kPushDriveScalar = 1.0;  // with squared inputs, sets max speed to 100%
-    public final static double kPushTurnScalar = 0.7;
+    public final static double kPushDriveScalar = 0.4;  // with squared inputs, sets max speed to 16% (Orig: 100%)
+    public final static double kPushTurnScalar = 0.2;
 
 
 
