@@ -71,16 +71,16 @@ public final class Constants {
     public final static double kDriveRampRate = 0.1;
         //Fast
     public final static boolean kFastSquaredInputs = true;
-    public final static double kFastDriveScalar = 0.3;  // with squared inputs, sets max speed to 9% (Orig: 81%)
-    public final static double kFastTurnScalar = 0.2;
+    public final static double kFastDriveScalar = 0.4;  // with squared inputs, sets max speed to 9% (Orig: 81%)
+    public final static double kFastTurnScalar = 0.4;
         //Slow
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.2;  // with squared inputs, sets max speed to 4% (Orig: 25%)
-    public final static double kSlowTurnScalar = 0.2;
+    public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 4% (Orig: 25%)
+    public final static double kSlowTurnScalar = 0.5;
         //Push
     public final static boolean kPushSquaredInputs = true;
-    public final static double kPushDriveScalar = 0.4;  // with squared inputs, sets max speed to 16% (Orig: 100%)
-    public final static double kPushTurnScalar = 0.2;
+    public final static double kPushDriveScalar = 0.6;  // with squared inputs, sets max speed to 16% (Orig: 100%)
+    public final static double kPushTurnScalar = 0.5;
 
 
 
@@ -91,9 +91,9 @@ public final class Constants {
     public final static int kEncoderResolution = 42;
     
     //Shooter
-    public final static double kHighGoalSpeed = -0.66;  //Was 66
-    public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
-    public final static double kBlehSpeed = -0.2;
+    public final static double kHighGoalSpeed = -0.3;  //Was 66
+    public final static double kLowGoalSpeed = -0.2; //Low goal at start 35% per testing
+    public final static double kBlehSpeed = -0.1;
     public final static double kShooterGearRatio = 7/6;
     public final static double kNeoMaxSpeed = 5676;
     public final static double kShooterMotorSpeedRPM = kHighGoalSpeed*kNeoMaxSpeed*kShooterGearRatio;
