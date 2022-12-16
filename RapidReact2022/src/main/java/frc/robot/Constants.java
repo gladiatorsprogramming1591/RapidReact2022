@@ -91,7 +91,7 @@ public final class Constants {
     public final static int kEncoderResolution = 42;
     
     //Shooter
-    public final static double kHighGoalSpeed = -0.66;  //Was 66
+    public final static double kHighGoalSpeed = -0.66;  //to Pit test -0.36
     public final static double kLowGoalSpeed = -0.35; //Low goal at start 35% per testing
     public final static double kBlehSpeed = -0.2;
     public final static double kShooterGearRatio = 7/6;
@@ -116,9 +116,9 @@ public final class Constants {
     public static final double kHopperRampRate = 0.1;
     public static final double kHopperForwardSpeed = 0.65;  // orig = 0.5
     public static final double kHopperAdvanceDist = 1.5;
-    public static final double kHopperReverseSpeed = -0.4;
+    public static final double kHopperReverseSpeed = -0.7;  //was at -0.4
     public static final double kHopperReverseDist = -1.5;
-    public static final double kHopperReverseNudgeDist = 0.5;
+    public static final double kHopperReverseNudgeDist = -0.5; //was at +0.5
 
 
     //Climb

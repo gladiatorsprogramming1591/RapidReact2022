@@ -16,7 +16,7 @@ public class PickupShootLowGoal extends SequentialCommandGroup {
     
     public PickupShootLowGoal(ShooterSubsystem shooter, HopperSubsystem hopper, DriveTrainC driveTrainC, IntakeSubsystem intake) {
         addCommands(
-            new DriveFastAuto(driveTrainC, -0.3).withTimeout(0.1),
+            new DriveFastAuto(driveTrainC, -0.3).withTimeout(0.1),  //Jerk to bring down intake
             new IntakeOn(intake),
             new PIDDriveInches(driveTrainC, 60),
             new PIDTurnToDegrees(driveTrainC, 180, false),
