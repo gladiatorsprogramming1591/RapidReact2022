@@ -79,7 +79,7 @@ public final class Constants {
     public final static double kSlowTurnScalar = 0.5;
         //Push
     public final static boolean kPushSquaredInputs = true;
-    public final static double kPushDriveScalar = 0.6;  // with squared inputs, sets max speed to 16% (Orig: 100%)
+    public final static double kPushDriveScalar = 1.0;  // with squared inputs, sets max speed to 16% (Orig: 100%)
     public final static double kPushTurnScalar = 0.5;
 
 
