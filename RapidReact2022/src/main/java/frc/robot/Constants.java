@@ -72,7 +72,7 @@ public final class Constants {
         //Fast
     public final static boolean kFastSquaredInputs = true;
     public final static double kFastDriveScalar = 0.4;  // with squared inputs, sets max speed to 9% (Orig: 81%)
-    public final static double kFastTurnScalar = 0.4;
+    public final static double kFastTurnScalar = 1.0;
         //Slow
     public final static boolean kSlowSquaredInputs = true;
     public final static double kSlowDriveScalar = 0.5;  // with squared inputs, sets max speed to 4% (Orig: 25%)
