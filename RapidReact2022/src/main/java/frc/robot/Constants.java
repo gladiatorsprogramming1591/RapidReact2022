@@ -85,7 +85,7 @@ public final class Constants {
 
 
     //LimeLight
-    public final static double kTargetHeight = -4.96;
+    public final static double kTargetHeight = -6.0;
     
     //Encoder 
     public final static int kEncoderResolution = 42;
